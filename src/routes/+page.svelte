@@ -17,8 +17,12 @@
     let title = "Number Guess";
     let count = 0;
     let multiplier = 2;
-    let answer = 21;
+    let answer = Math.floor(Math.random() * 21);
     let correct = false;
+    let highLow = "";
+    let guesses = 0;
+    let previousGame = 0;
+    let previousGuesses = 0;
 
     let incrementCount = () =>
     {
@@ -33,20 +37,41 @@
     let reset = () =>
     {
         count = 0;
+        guesses = 0;
         multiplier = 2;
         correct = false;
+        answer = Math.floor(Math.random() * 21);
+        highLow = "";
     }
 
     let checkAnswer = () =>
     {
+        guesses++;
         if (answer === count)
         {
             correct = true;
+            highLow = "";
+            previousGame = count;
+            previousGuesses = guesses;
         }
         else
         {
             correct = false;
+
+            if (answer < count)
+            {
+                highLow = "too high";
+            }
+            else
+            {
+                highLow = "too low";
+            }
         }
+    }
+
+    let previousGames = () =>
+    {
+
     }
 </script>
 
@@ -65,9 +90,7 @@
     decrease
 </button>
 
-<p>
-
-</p>
+<br>
 
 <button on:click={checkAnswer}>
     Check
@@ -78,5 +101,11 @@
 </button>
 
 <p>
-    {correct === true ? 'Correct!' : 'Incorrect'}
+    {correct === true ? `Correct! ${guesses} guesses` : 'Incorrect'} {highLow}
+</p>
+
+<p>
+    Record: <br>
+    Previous game: <br>
+    Number:{previousGame} guesses:{previousGuesses}
 </p>
