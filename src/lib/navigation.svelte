@@ -1,7 +1,6 @@
 <nav>
     <ul>
-        <li><a href="/">Number Guess Page</a></li>
-        <li><a href = "/about">About Page</a></li>
-        <li>3</li>
+        <li><a href="/">Home</a></li>
+        <li><a href = "/game">Number Guess</a></li>
     </ul>
 </nav>

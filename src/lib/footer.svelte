@@ -1,1 +1,1 @@
-This is a funny footer
+<footer>funny footer</footer>
