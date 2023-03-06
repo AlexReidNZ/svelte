@@ -1,1 +1,1 @@
-<p>funny home page</p>
+<p>this is the home page</p>
