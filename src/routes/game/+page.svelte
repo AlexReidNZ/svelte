@@ -68,30 +68,29 @@
     {count}
 </p>
 
-<button on:click={incrementCount}>
+<button class="gameButton" on:click={incrementCount}>
     increase
 </button>
 
-<button on:click={decrementCount}>
+<button class="gameButton" on:click={decrementCount}>
     decrease
 </button>
 
-<br>
+<br><br>
 
-<button on:click={checkAnswer}>
+<button class="checkButton" on:click={checkAnswer}>
     Check
 </button>
 
-<button on:click={reset} style="background-color: rgb(211, 80, 57);">
+<button class="resetButton" on:click={reset}>
     reset
 </button>
 
 <p>
-    {correct === true ? `Correct! ${guesses} guesses` : 'Incorrect'} {highLow}
+    {correct === true ? `Correct! ${guesses} guesses` : 'Incorrect!'} {highLow}
 </p>
 
 <p>
-    Record: <br>
     Previous game: <br>
     Number:{previousGame} guesses:{previousGuesses}
 </p>

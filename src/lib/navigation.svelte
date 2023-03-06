@@ -1,6 +1,6 @@
 <nav>
     <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href = "/game">Number Guess</a></li>
+        <li><button class="navButton"><a href="/">Home</a></button></li>
+        <li><button class="navButton"><a href = "/game">Number Guess</a></button></li>
     </ul>
 </nav>
