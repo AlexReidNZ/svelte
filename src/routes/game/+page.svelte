@@ -2,13 +2,12 @@
 <script>
     let title = "Number Guess";
     let count = 0;
-    let multiplier = 2;
     let answer = Math.floor(Math.random() * 21);
     let correct = false;
     let highLow = "";
     let guesses = 0;
-    let previousGame = 0;
     let previousGuesses = 0;
+    let previousGame = 0;
 
     let incrementCount = () =>
     {
@@ -24,10 +23,9 @@
     {
         count = 0;
         guesses = 0;
-        multiplier = 2;
-        correct = false;
         answer = Math.floor(Math.random() * 21);
         highLow = "";
+        correct = false;
     }
 
     let checkAnswer = () =>
@@ -37,8 +35,8 @@
         {
             correct = true;
             highLow = "";
-            previousGame = count;
             previousGuesses = guesses;
+            previousGame = answer;
         }
         else
         {
@@ -54,14 +52,10 @@
             }
         }
     }
-
-    let previousGames = () =>
-    {
-
-    }
 </script>
 
 <!-- HTML Structure --->
+<section class = "gameSection">
 <h1>{title}</h1>
 
 <p>
@@ -91,6 +85,7 @@
 </p>
 
 <p>
-    Previous game: <br>
-    Number:{previousGame} guesses:{previousGuesses}
+    Previous Game: <br>
+    Number: {previousGame} Guesses: {previousGuesses}
 </p>
+</section>
