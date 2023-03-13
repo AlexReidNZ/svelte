@@ -55,6 +55,7 @@
 </script>
 
 <!-- HTML Structure --->
+<main>
 <section class = "gameSection">
 <h1>{title}</h1>
 
@@ -62,24 +63,23 @@
     {count}
 </p>
 
-<button class="gameButton" on:click={incrementCount}>
-    increase
-</button>
+<section class="buttons">
+    <button class="gameButton" on:click={incrementCount}>
+        increase
+    </button>
 
-<button class="gameButton" on:click={decrementCount}>
-    decrease
-</button>
+    <button class="gameButton" on:click={decrementCount}>
+        decrease
+    </button>
 
-<br><br>
+    <button class="checkButton" on:click={checkAnswer}>
+        Check
+    </button>
 
-<button class="checkButton" on:click={checkAnswer}>
-    Check
-</button>
-
-<button class="resetButton" on:click={reset}>
-    reset
-</button>
-
+    <button class="resetButton" on:click={reset}>
+        reset
+    </button>
+</section>
 <p>
     {correct === true ? `Correct! ${guesses} guesses` : 'Incorrect!'} {highLow}
 </p>
@@ -89,3 +89,4 @@
     Number: {previousGame} Guesses: {previousGuesses}
 </p>
 </section>
+</main>

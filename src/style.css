@@ -3,17 +3,36 @@
 button{
     border-radius: 100px;
 }
+main{
+    background-color: rgba(5, 255, 255, 0.151);
+    margin: 0px;
+}
+p{
+    margin: 0px;
+}
 
 /* Style for header*/
 header{
     background-color: rgb(37,155,235);
     display: flex;
     justify-content: center;
+    font-size: 25px;
 }
+
+/*style for footer*/
+footer{
+    background-color: rgb(71, 71, 226);
+    height: 20px;
+    margin-top: 0px;
+}
+
 
 /*Style for nav bar*/
 nav button{
     background-color: rgb(82, 198, 233);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
 }
 nav button:hover{
     background-color: rgb(37, 155, 235);
@@ -28,6 +47,7 @@ ul{
     list-style-type: none;
     display: flex;
     justify-content: center;
+    margin: 0px;
 }
 
 li{
@@ -39,28 +59,28 @@ li a{
     padding: 8px;
 }
 
-footer{
-    background-color: rgb(71, 71, 226);
-}
-
 /*Style for game page*/
-.gameSection{
-    background-color: rgba(5, 255, 255, 0.151);
-}
 .gameSection h1{
     font-size: 30px;
     font-style: italic;
     font-weight: normal;
     display: flex;
     justify-content: center;
+    margin: 0px;
 }
 .gameSection p{
+    display: flex;
+    justify-content: center;
+}
+.buttons{
     display: flex;
     justify-content: center;
 }
 .gameSection button{
     display: flex;
     justify-content: center;
+    margin: 10px;
+    width: 80px;
 }
 .gameButton{
     background-color: rgb(151, 192, 240);
