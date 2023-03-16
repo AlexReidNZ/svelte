@@ -7,5 +7,18 @@
 
 <Header />
 <Navigation />
+<main>
 <slot /> <!-- page specific content -->
+</main>
 <Footer />
+
+<style>
+main{
+    
+    height: 87vh;
+    color: var(--bodyText);
+    background-color: var(--lightColour);
+    background-size: 100%;
+    margin: 0px;
+}
+</style>

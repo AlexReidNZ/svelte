@@ -55,8 +55,6 @@
 </script>
 
 <!-- HTML Structure --->
-<main>
-<section class = "gameSection">
 <h1>{title}</h1>
 
 <p>
@@ -64,13 +62,14 @@
 </p>
 
 <section class="buttons">
-    <button class="gameButton" on:click={incrementCount}>
+    <button class="mathButton" on:click={decrementCount}>
+        decrease
+    </button>
+    
+    <button class="mathButton" on:click={incrementCount}>
         increase
     </button>
 
-    <button class="gameButton" on:click={decrementCount}>
-        decrease
-    </button>
 
     <button class="checkButton" on:click={checkAnswer}>
         Check
@@ -88,5 +87,52 @@
     Previous Game: <br>
     Number: {previousGame} Guesses: {previousGuesses}
 </p>
-</section>
-</main>
+
+<!-- styling -->
+<style>
+h1{
+    font-size: 30px;
+    font-style: italic;
+    font-weight: normal;
+    display: flex;
+    justify-content: center;
+    margin: 0px;
+}
+p{
+    display: flex;
+    justify-content: center;
+}
+.buttons{
+    display: flex;
+    justify-content: center;
+}
+button{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    width: 80px;
+}
+.mathButton{
+    background-color: rgb(151, 192, 240);
+}
+.mathButton:hover{
+    background-color: rgb(26, 218, 243);
+    border-color: rgb(26, 218, 243);
+}
+
+.resetButton{
+    background-color: rgb(204, 55, 55);
+}
+.resetButton:hover{
+    background-color: rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
+}
+
+.checkButton{
+    background-color: rgb(80, 136, 80);
+}
+.checkButton:hover{
+    background-color: rgb(26, 204, 26);
+    border-color: rgb(26, 204, 26);
+}
+</style>

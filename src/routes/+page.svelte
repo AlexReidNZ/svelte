@@ -1,3 +1,1 @@
-<main>
-    <p>this is the home page</p>
-</main>
+<p>this is the home page.</p>
