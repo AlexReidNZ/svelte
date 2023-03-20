@@ -2,12 +2,18 @@
 <script>
     let title = "Number Guess";
     let count = 0;
-    let answer = Math.floor(Math.random() * 21);
+    let answer = Math.floor(Math.random()*21); //generates a random number from 1-20
     let correct = false;
     let highLow = "";
     let guesses = 0;
     let previousGuesses = 0;
     let previousGame = 0;
+
+    let changeGuess = () =>
+    {
+        count = document.getElementById("guess").value;
+        //sets the value of the players guess to the value in the input.
+    }
 
     let incrementCount = () =>
     {
@@ -19,19 +25,19 @@
         count--;
     }
 
-    let reset = () =>
+    let reset = () => //resets the game by resetting the random number, guesses and count.
     {
         count = 0;
         guesses = 0;
-        answer = Math.floor(Math.random() * 21);
+        answer = Math.floor(Math.random()*21);
         highLow = "";
         correct = false;
     }
 
-    let checkAnswer = () =>
+    let checkAnswer = () => 
     {
         guesses++;
-        if (answer === count)
+        if (answer == count)//if the guess is correct, correct is true.
         {
             correct = true;
             highLow = "";
@@ -42,7 +48,7 @@
         {
             correct = false;
 
-            if (answer < count)
+            if (answer < count)//shows if the guess is too high or too low.
             {
                 highLow = "too high";
             }
@@ -57,32 +63,22 @@
 <!-- HTML Structure --->
 <h1>{title}</h1>
 
-<p>
-    {count}
-</p>
+<form>
+    <input type="number" id="guess" name="guess" min="1" max="20" placeholder="1" on:change={changeGuess}> <!--input for guessing-->
+</form>
 
 <section class="buttons">
-    <button class="mathButton" on:click={decrementCount}>
-        decrease
-    </button>
-    
-    <button class="mathButton" on:click={incrementCount}>
-        increase
-    </button>
-
-
-    <button class="checkButton" on:click={checkAnswer}>
+    <button class="checkButton" on:click={checkAnswer}> <!--checks if the answer is correct-->
         Check
     </button>
-
-    <button class="resetButton" on:click={reset}>
-        reset
+    <button class="resetButton" on:click={reset}> <!--lets player reset the game-->
+        Reset
     </button>
 </section>
 <p>
-    {correct === true ? `Correct! ${guesses} guesses` : 'Incorrect!'} {highLow}
+    {correct === true ? `Correct! You guessed it in ${guesses} guesses` : 'Incorrect!'} {highLow}
 </p>
-
+<br>
 <p>
     Previous Game: <br>
     Number: {previousGame} Guesses: {previousGuesses}
@@ -102,6 +98,18 @@ p{
     display: flex;
     justify-content: center;
 }
+form{
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    margin-bottom: 0px;
+}
+form input{
+    background-color: rgba(0, 0, 0, 0);
+    height: 25px;
+    font-size: 25px;
+    color: var(--bodyText);
+}
 .buttons{
     display: flex;
     justify-content: center;
@@ -112,14 +120,6 @@ button{
     margin: 10px;
     width: 80px;
 }
-.mathButton{
-    background-color: rgb(151, 192, 240);
-}
-.mathButton:hover{
-    background-color: rgb(26, 218, 243);
-    border-color: rgb(26, 218, 243);
-}
-
 .resetButton{
     background-color: rgb(204, 55, 55);
 }
