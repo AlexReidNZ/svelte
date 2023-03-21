@@ -1,13 +1,16 @@
 <!-- JS function -->
 <script>
-    let title = "Number Guess";
+    let title = "Guessing Game";
     let guess = 0;
     let secondGuess = 1;
+    let thirdGuess = "";
     let answer = Math.floor(Math.random()*21); //generates a random number from 1-20
     let answer2 = Math.floor(Math.random()*21);
+    let answer3 = "test";
     let correct = false;
     let highLow1 = "";
     let highLow2 = "";
+    let correct3 = "";
     let guesses = 0;
     let previousGuesses = 0;
     let previousGame = 0;
@@ -16,6 +19,7 @@
     {
         guess = document.getElementById("guess").value;
         secondGuess = document.getElementById("secondGuess").value;
+        thirdGuess = document.getElementById("thirdGuess").value;
         //sets the value of the players guess to the value in the input.
     }
 
@@ -32,7 +36,7 @@
     let checkAnswer = () => 
     {
         guesses++;
-        if ((answer == guess)&&(answer2 == secondGuess))//if the guess is correct, correct is true.
+        if ((answer == guess)&&(answer2 == secondGuess)&&(answer3 == thirdGuess))//if the guess is correct, correct is true.
         {
             correct = true;
             highLow1 = "";
@@ -69,6 +73,15 @@
             {
                 highLow2 = "Correct!";
             }
+
+            if (answer3 == thirdGuess)
+            {
+                correct3 = "Correct!";
+            }
+            else
+            {
+                correct3 = "Incorrect!";
+            }
         }
     }
 </script>
@@ -79,6 +92,7 @@
 <form>
     <input type="number" id="guess" name="guess" min="1" max="20" placeholder="1" on:change={changeGuess}> <!--input for guessing-->
     <input type="number" id="secondGuess" name="secondGuess" min="1" max="20" placeholder="1" on:change={changeGuess}>
+    <input type="text" id="thirdGuess" name="thirdGuess" on:change={changeGuess}>
 </form>
 
 <section class="buttons">
@@ -90,7 +104,7 @@
     </button>
 </section>
 <p>
-    {highLow1} {highLow2}
+    {highLow1} {highLow2} {correct3}
 </p>
 <br>
 <p>
@@ -127,6 +141,7 @@ form input{
     height: 25px;
     font-size: 25px;
     color: var(--bodyText);
+    width: 10rem;
 }
 .buttons{
     display: flex;
