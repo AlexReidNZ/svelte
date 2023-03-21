@@ -1,46 +1,42 @@
 <!-- JS function -->
 <script>
     let title = "Number Guess";
-    let count = 0;
+    let guess = 0;
+    let secondGuess = 1;
     let answer = Math.floor(Math.random()*21); //generates a random number from 1-20
+    let answer2 = Math.floor(Math.random()*21);
     let correct = false;
-    let highLow = "";
+    let highLow1 = "";
+    let highLow2 = "";
     let guesses = 0;
     let previousGuesses = 0;
     let previousGame = 0;
 
     let changeGuess = () =>
     {
-        count = document.getElementById("guess").value;
+        guess = document.getElementById("guess").value;
+        secondGuess = document.getElementById("secondGuess").value;
         //sets the value of the players guess to the value in the input.
-    }
-
-    let incrementCount = () =>
-    {
-        count++;
-    }
-
-    let decrementCount = () =>
-    {
-        count--;
     }
 
     let reset = () => //resets the game by resetting the random number, guesses and count.
     {
-        count = 0;
+        guess = 0;
         guesses = 0;
         answer = Math.floor(Math.random()*21);
-        highLow = "";
+        highLow1 = "";
+        highLow2 = "";
         correct = false;
     }
 
     let checkAnswer = () => 
     {
         guesses++;
-        if (answer == count)//if the guess is correct, correct is true.
+        if ((answer == guess)&&(answer2 == secondGuess))//if the guess is correct, correct is true.
         {
             correct = true;
-            highLow = "";
+            highLow1 = "";
+            highLow2 = "";
             previousGuesses = guesses;
             previousGame = answer;
         }
@@ -48,13 +44,30 @@
         {
             correct = false;
 
-            if (answer < count)//shows if the guess is too high or too low.
+            if (answer < guess)//shows if the guess is too high or too low.
             {
-                highLow = "too high";
+                highLow1 = "too high";
+            }
+            else if(answer > guess)
+            {
+                highLow1 = "too low";
             }
             else
             {
-                highLow = "too low";
+                highLow1 = "Correct!"
+            }
+
+            if (answer2 < secondGuess)//shows if the guess is too high or too low.
+            {
+                highLow2 = "too high";
+            }
+            else if (answer2 > secondGuess)
+            {
+                highLow2 = "too low";
+            }
+            else
+            {
+                highLow2 = "Correct!";
             }
         }
     }
@@ -65,6 +78,7 @@
 
 <form>
     <input type="number" id="guess" name="guess" min="1" max="20" placeholder="1" on:change={changeGuess}> <!--input for guessing-->
+    <input type="number" id="secondGuess" name="secondGuess" min="1" max="20" placeholder="1" on:change={changeGuess}>
 </form>
 
 <section class="buttons">
@@ -76,11 +90,15 @@
     </button>
 </section>
 <p>
-    {correct === true ? `Correct! You guessed it in ${guesses} guesses` : 'Incorrect!'} {highLow}
+    {highLow1} {highLow2}
 </p>
 <br>
 <p>
-    Previous Game: <br>
+    {correct === true ? `Correct! You guessed it in ${guesses} guesses`: ''}
+</p>
+<br>
+<p>
+    Previous Game:<br>
     Number: {previousGame} Guesses: {previousGuesses}
 </p>
 
