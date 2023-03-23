@@ -5,7 +5,8 @@
 <nav>
     <ul>
         <li><button class:active="{$page.url.pathname==="/"}"><a href="/">Home</a></button></li>
-        <li><button class:active="{$page.url.pathname.includes("rules")}"><a href="rules" >Rules</a></button></li>
+        <li><button class:active="{$page.url.pathname.includes("about")}"><a href="about" >about</a></button></li>
+        <li><button class:active="{$page.url.pathname.includes("suggestor")}"><a href = "suggestor">Suggestor</a></button></li>
         <li><button class:active="{$page.url.pathname.includes("game")}"><a href = "game">Play</a></button></li>
     </ul>
 </nav>

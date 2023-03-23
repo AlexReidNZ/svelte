@@ -17,13 +17,13 @@
 
     let changeGuess = () =>
     {
-        guess = document.getElementById("guess").value;
-        secondGuess = document.getElementById("secondGuess").value;
-        thirdGuess = document.getElementById("thirdGuess").value;
-        //sets the value of the players guess to the value in the input.
+        guess = document.getElementById("guess")?.value;
+        secondGuess = document.getElementById("secondGuess")?.value;
+        thirdGuess = document.getElementById("thirdGuess")?.value;
+        //sets the value of the players guesses to the value in the input.
     }
 
-    let reset = () => //resets the game by resetting the random number, guesses and count.
+    let reset = () => //resets the game by resetting the random answers, guesses and count.
     {
         guess = 0;
         guesses = 0;
