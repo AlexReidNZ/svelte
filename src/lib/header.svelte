@@ -1,8 +1,7 @@
 <header>HEADER</header>
 
-<!-- styling -->
 <style>
-header{
+  header {
     height: 3vh;
     min-height: 25px;
     color: var(--highlightText);
@@ -10,5 +9,5 @@ header{
     display: flex;
     justify-content: center;
     font-size: 25px;
-}
+  }
 </style>
