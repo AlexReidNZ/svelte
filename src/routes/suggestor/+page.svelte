@@ -1,6 +1,6 @@
 <script>
-    let platform = "any"
-    let genre = "any"
+    let platform ="any"
+    let genre ="any"
     let year="2023"
 
     let changePlatform = () => {
@@ -54,33 +54,48 @@
 <details class="selected">
     <summary>Current Settings</summary>
     <ul>
-        <li>{platform}</li>
-        <li>{genre}</li>
-        <li>{year}</li>
+        <li>Platform: {platform}</li>
+        <li>Genre: {genre}</li>
+        <li>Year: {year}</li>
     </ul>
 </details>
 
 <style>
     .options{
         padding: 0px 10px;
+        display: flex;
+        justify-content: center;
     }
     input[type="range"]{
         width: 200px;
+        color: var(--highlightText);
+    }
+    input[type="range"]::-webkit-slider-runnable-track{
+        background-color: var(--darkColour);
+        cursor: default;
+        border-radius: 10px;
     }
     datalist{
         display: flex;
         justify-content: space-between;
         width: 200px;
-        padding-left: 350px;
+        padding-left: 40px;
     }
     datalist option{
         color: white;
     }
     label{
-        width: 50px;
+        width: fit-content;
+        padding-right: 5px;
     }
     select{
-        width: 100px;
+        width: fit-content;
+        height: 25px;
+        background-color: var(--darkColour);
+        color: var(--bodyText);
+        border-color: var(--highlightText);
+        border-radius: 10px;
+        padding-right: 10px;
     }
     .yearSelector{
         display: inline;
@@ -90,10 +105,12 @@
         padding: 5px;
     }
     .selected ul{
+        margin: 0;
         padding: 5px;
         color: black;
         background-color: var(--highlightText);
         width: fit-content;
         border-radius: 10px;
+        list-style-type: none;
     }
 </style>
