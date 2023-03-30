@@ -1,4 +1,9 @@
-<header>HEADER</header>
+<script>
+  import Navigation from "./navigation.svelte";
+</script>
+
+  <header>HEADER</header>
+  <Navigation />
 
 <style>
   header {

@@ -1,7 +1,7 @@
 <script>
-  let platform = "any";
-  let genre = "any";
-  let year = "2023";
+  let platform = "Any";
+  let genre = "Any";
+  let year = "2020";
 
   let changePlatform = () => {
     platform = document.getElementById("platformSelect")?.value;
@@ -14,33 +14,38 @@
   };
 </script>
 
-<section class="options"> <!--Section that contains inputs for options-->
-  <label for="platformSelect">Platform:</label>
-  <select name="platform" id="platformSelect" on:change={changePlatform}>
-    <option value="any">Any</option>
-    <option value="PC">PC</option>
-    <option value="Switch">Switch</option>
-    <option value="Playstation">Playstation</option>
-    <option value="Xbox">Xbox</option>
-  </select>
-
-  <label for="genreSelect">Genre:</label>
-  <select name="genre" id="genreSelect" on:change={changeGenre}>
-    <option value="any">Any</option>
-    <option value="RPG">RPG</option>
-    <option value="FPS">FPS</option>
-    <option value="Platformer">Platformer</option>
-    <option value="Puzzle">Puzzle</option>
-  </select>
-
-  <section class="yearSelector"> <!--Contains slider for selecting year-->
+<section class="options">
+  <!--Section that contains inputs for options-->
+  <section class="filterSeperator">
+    <label for="platformSelect">Platform:</label>
+    <select name="platform" id="platformSelect" on:change={changePlatform}>
+      <option value="Any">Any</option>
+      <option value="PC">PC</option>
+      <option value="Switch">Switch</option>
+      <option value="Playstation">Playstation</option>
+      <option value="Xbox">Xbox</option>
+    </select>
+  </section>
+  <section class="filterSeperator">
+    <label for="genreSelect">Genre:</label>
+    <select name="genre" id="genreSelect" on:change={changeGenre}>
+      <option value="Any">Any</option>
+      <option value="RPG">RPG</option>
+      <option value="FPS">FPS</option>
+      <option value="Platformer">Platformer</option>
+      <option value="Puzzle">Puzzle</option>
+      <option value="Other">Other</option>
+    </select>
+  </section>
+  <section class="filterSeperator">
+    <!--Contains slider for selecting year-->
     <label for="year">Year:</label>
     <input
       type="range"
       id="year"
       name="year"
       min="2000"
-      max="2023"
+      max="2020"
       value="2023"
       list="yearMarkers"
       on:change={changeYear}
@@ -55,7 +60,8 @@
   </section>
 </section>
 
-<details class="selected"> <!--Displays the currently selected options-->
+<details>
+  <!--Displays the currently selected options-->
   <summary>Current Settings</summary>
   <ul>
     <li>Platform: {platform}</li>
@@ -66,9 +72,9 @@
 
 <style>
   .options {
-    padding: 0px 10px;
+    padding-top: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: space-evenly;
   }
   input[type="range"] {
     width: 200px;
@@ -81,12 +87,13 @@
   }
   datalist {
     display: flex;
-    justify-content: space-between;
+    justify-content: space-evenly;
     width: 200px;
     padding-left: 40px;
   }
   datalist option {
     color: white;
+    padding: 0px 7px;
   }
   label {
     width: fit-content;
@@ -99,22 +106,30 @@
     color: var(--bodyText);
     border-color: var(--highlightText);
     border-radius: 10px;
-    margin-right: 10px;
   }
-  .yearSelector {
+  details {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+  }
+  details ul {
+    margin: 0px;
+    padding: 5px;
+    background-color: var(--darkColour);
+    color: var(--bodyText);
+    border-radius: 10px;
+    border: 1px;
+    border-color: var(--highlightText);
+    border-style: solid;
+    width: fit-content;
+    list-style-type: none;
+  }
+  details ul li {
+    margin-right: 10px;
     display: inline;
   }
-  .selected {
-    margin: 10px;
-    padding: 5px;
-  }
-  .selected ul {
-    margin: 0;
-    padding: 5px;
-    color: black;
-    background-color: var(--highlightText);
+  .filterSeperator {
     width: fit-content;
-    border-radius: 10px;
-    list-style-type: none;
+    height: fit-content;
   }
 </style>
