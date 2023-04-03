@@ -1,16 +1,79 @@
 <script>
-  let platform = "Any";
-  let genre = "Any";
-  let year = "2020";
+import {data} from "../../../gamedata.js";
+
+  let platform = "";
+  let genre = "";
+  let year = 2020;
+  let game = data;
+
+  let genres = [
+    "Platformer",
+    "Puzzle",
+    "RPG",
+    "Shooter"
+  ]
+
+ console.log(data);
 
   let changePlatform = () => {
-    platform = document.getElementById("platformSelect")?.value;
+    let temp = document.getElementById("platformSelect")?.value;
+    platform = temp;
   };
   let changeGenre = () => {
-    genre = document.getElementById("genreSelect")?.value;
+    let temp = document.getElementById("genreSelect")?.value;
+    genre = temp;
   };
   let changeYear = () => {
-    year = document.getElementById("year")?.value;
+    let temp = document.getElementById("year")?.value;
+    year = temp;
+  };
+  let displayData = () => {
+    game = [];
+    let count = 0;
+
+
+    console.log(data)
+
+    let subset = data.filter(x => x.ReleaseYear <= year && x.Platforms.includes(platform))
+    
+    if(genre != "Other")
+      subset = subset.filter(x => x.Genre.includes(genre))
+    else
+    {
+      let subsetCopy = [...subset]
+      subset = []
+
+      subsetCopy.forEach(x => {
+        console.log(x)
+        let g = x.Genre.split()         // split by space AND dash - regex????
+        let found = false
+        g.forEach(gg => {
+          if(genres.includes(gg))
+            found = true;
+        })
+          if(!found)
+            subset.push(x)
+      })
+    }
+    
+    console.log(subset)
+
+
+    /*for (let i =0; i<data.length; i++)
+    {
+      if ((data[i].ReleaseYear <= year) && (data[i].Platforms.includes(platform)))
+      {
+        if (genre == "Other")
+        {
+          data[i]
+        }
+        if (data[i].Genre.includes(genre))
+        {
+          game[count] = data[i];
+          count ++;
+        }
+      }
+    }*/
   };
 </script>
 
@@ -19,21 +82,20 @@
   <section class="filterSeperator">
     <label for="platformSelect">Platform:</label>
     <select name="platform" id="platformSelect" on:change={changePlatform}>
-      <option value="Any">Any</option>
+      <option value="">Any</option>
+      <option value="Nintendo">Nintendo</option>
       <option value="PC">PC</option>
-      <option value="Switch">Switch</option>
-      <option value="Playstation">Playstation</option>
+      <option value="PS">Playstation</option>
       <option value="Xbox">Xbox</option>
     </select>
   </section>
   <section class="filterSeperator">
     <label for="genreSelect">Genre:</label>
     <select name="genre" id="genreSelect" on:change={changeGenre}>
-      <option value="Any">Any</option>
-      <option value="RPG">RPG</option>
-      <option value="FPS">FPS</option>
-      <option value="Platformer">Platformer</option>
-      <option value="Puzzle">Puzzle</option>
+      <option value="">Any</option>
+      {#each genres as genre }
+        <option value="{genre}">{genre}</option>
+      {/each}
       <option value="Other">Other</option>
     </select>
   </section>
@@ -46,7 +108,7 @@
       name="year"
       min="2000"
       max="2020"
-      value="2023"
+      value="2020"
       list="yearMarkers"
       on:change={changeYear}
     />
@@ -69,6 +131,12 @@
     <li>Year: {year}</li>
   </ul>
 </details>
+
+<button on:click={displayData}>Display</button><br>
+
+{#each game as g}
+  <span>{g.Title} {g.Genre} {g.Platforms} {g.ReleaseYear}</span><br />
+{/each}
 
 <style>
   .options {
@@ -131,5 +199,17 @@
   .filterSeperator {
     width: fit-content;
     height: fit-content;
+  }  
+  button {
+    background-color: var(--highlightText);
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+  }
+  button:hover {
+    background-color: var(--secondaryHighlight);
+    color: var(--bodyText);
+  }
+  span{
   }
 </style>

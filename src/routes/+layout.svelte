@@ -13,7 +13,7 @@
 
 <style>
   main {
-    height: 87vh;
+    min-height: 87vh;
     color: var(--bodyText);
     background-color: var(--lightColour);
     background-size: 100%;
