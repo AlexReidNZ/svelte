@@ -1,19 +1,14 @@
 <script>
-import {data} from "../../../gamedata.js";
+  import { data } from "../../../gamedata.js";
 
   let platform = "";
   let genre = "";
   let year = 2020;
   let game = data;
 
-  let genres = [
-    "Platformer",
-    "Puzzle",
-    "RPG",
-    "Shooter"
-  ]
+  let genres = ["Platformer", "Puzzle", "RPG", "Shooter"];
 
- console.log(data);
+  console.log(data);
 
   let changePlatform = () => {
     let temp = document.getElementById("platformSelect")?.value;
@@ -31,8 +26,7 @@ import {data} from "../../../gamedata.js";
     game = [];
     let count = 0;
 
-
-    console.log(data)
+    /*console.log(data)
 
     let subset = data.filter(x => x.ReleaseYear <= year && x.Platforms.includes(platform))
     
@@ -56,24 +50,34 @@ import {data} from "../../../gamedata.js";
       })
     }
     
-    console.log(subset)
+    console.log(subset)*/
 
-
-    /*for (let i =0; i<data.length; i++)
-    {
-      if ((data[i].ReleaseYear <= year) && (data[i].Platforms.includes(platform)))
+    for (let i = 0; i < data.length; i++) {
+      if (data[i].ReleaseYear <= year && data[i].Platforms.includes(platform)) //if Platform and year match
       {
-        if (genre == "Other")
+        if (genre == "Other") //If other is selected, check that each game DOESN'T have any of the listed genres
         {
-          data[i]
+          let isOther = true;
+          for (let x = 0; x < genres.length; x++) 
+          {
+            if (data[i].Genre.includes(genres[x])) 
+            {
+              isOther = false;
+            }
+          }
+          if(isOther) //Add all 'other' games
+          {  
+          game[count] = data[i];
+          count++;
+          }
         }
-        if (data[i].Genre.includes(genre))
+        if (data[i].Genre.includes(genre)) //If a genre is selected, add all games of that genre
         {
           game[count] = data[i];
-          count ++;
+          count++;
         }
       }
-    }*/
+    }
   };
 </script>
 
@@ -93,8 +97,8 @@ import {data} from "../../../gamedata.js";
     <label for="genreSelect">Genre:</label>
     <select name="genre" id="genreSelect" on:change={changeGenre}>
       <option value="">Any</option>
-      {#each genres as genre }
-        <option value="{genre}">{genre}</option>
+      {#each genres as genre}
+        <option value={genre}>{genre}</option>
       {/each}
       <option value="Other">Other</option>
     </select>
@@ -132,7 +136,7 @@ import {data} from "../../../gamedata.js";
   </ul>
 </details>
 
-<button on:click={displayData}>Display</button><br>
+<button on:click={displayData}>Display</button><br />
 
 {#each game as g}
   <span>{g.Title} {g.Genre} {g.Platforms} {g.ReleaseYear}</span><br />
@@ -199,7 +203,7 @@ import {data} from "../../../gamedata.js";
   .filterSeperator {
     width: fit-content;
     height: fit-content;
-  }  
+  }
   button {
     background-color: var(--highlightText);
     margin-right: 5px;
@@ -210,6 +214,6 @@ import {data} from "../../../gamedata.js";
     background-color: var(--secondaryHighlight);
     color: var(--bodyText);
   }
-  span{
+  span {
   }
 </style>
