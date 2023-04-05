@@ -6,7 +6,7 @@
   let year = 2020;
   let game = data;
 
-  let genres = ["Platformer", "Puzzle", "RPG", "Shooter"];
+  let genres = ["Platformer", "Puzzle", "RPG", "Shooter","Adventure"];
 
   console.log(data);
 
