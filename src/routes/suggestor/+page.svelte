@@ -6,7 +6,8 @@
   let year = 2020;
   let game = data;
 
-  let genres = ["Platformer", "Puzzle", "RPG", "Shooter","Adventure"];
+  let genres = ["Platformer", "Puzzle", "RPG", "Shooter", "Adventure"];
+  let platforms = ["PC", "Nintendo", "PS", "Xbox","iOS"];
 
   console.log(data);
 
@@ -26,53 +27,25 @@
     game = [];
     let count = 0;
 
-    /*console.log(data)
-
-    let subset = data.filter(x => x.ReleaseYear <= year && x.Platforms.includes(platform))
-    
-    if(genre != "Other")
-      subset = subset.filter(x => x.Genre.includes(genre))
-    else
-    {
-      let subsetCopy = [...subset]
-      subset = []
-
-      subsetCopy.forEach(x => {
-        console.log(x)
-        let g = x.Genre.split()         // split by space AND dash - regex????
-        let found = false
-        g.forEach(gg => {
-          if(genres.includes(gg))
-            found = true;
-        })
-          if(!found)
-            subset.push(x)
-      })
-    }
-    
-    console.log(subset)*/
-
     for (let i = 0; i < data.length; i++) {
-      if (data[i].ReleaseYear <= year && data[i].Platforms.includes(platform)) //if Platform and year match
-      {
-        if (genre == "Other") //If other is selected, check that each game DOESN'T have any of the listed genres
-        {
+      if (data[i].ReleaseYear <= year && data[i].Platforms.includes(platform)) {
+        //if Platform and year match
+        if (genre == "Other") {
+          //If other is selected, check that each game DOESN'T have any of the listed genres
           let isOther = true;
-          for (let x = 0; x < genres.length; x++) 
-          {
-            if (data[i].Genre.includes(genres[x])) 
-            {
+          for (let x = 0; x < genres.length; x++) {
+            if (data[i].Genre.includes(genres[x])) {
               isOther = false;
             }
           }
-          if(isOther) //Add all 'other' games
-          {  
-          game[count] = data[i];
-          count++;
+          if (isOther) {
+            //Add all 'other' games
+            game[count] = data[i];
+            count++;
           }
         }
-        if (data[i].Genre.includes(genre)) //If a genre is selected, add all games of that genre
-        {
+        if (data[i].Genre.includes(genre)) {
+          //If a genre is selected, add all games of that genre
           game[count] = data[i];
           count++;
         }
@@ -87,10 +60,9 @@
     <label for="platformSelect">Platform:</label>
     <select name="platform" id="platformSelect" on:change={changePlatform}>
       <option value="">Any</option>
-      <option value="Nintendo">Nintendo</option>
-      <option value="PC">PC</option>
-      <option value="PS">Playstation</option>
-      <option value="Xbox">Xbox</option>
+      {#each platforms as platform}
+        <option value={platform}>{platform}</option>
+      {/each}
     </select>
   </section>
   <section class="filterSeperator">
@@ -138,9 +110,12 @@
 
 <button on:click={displayData}>Display</button><br />
 
+<section class = "DisplayedList">
+  <span><h1>Title</h1><h1>Genre</h1><h1>Platforms</h1><h1>Release Year</h1></span>
 {#each game as g}
-  <span>{g.Title} {g.Genre} {g.Platforms} {g.ReleaseYear}</span><br />
+  <span><p>{g.Title}</p><p>{g.Genre}</p><p>{g.Platforms}</p><p>{g.ReleaseYear}</p></span>
 {/each}
+</section>
 
 <style>
   .options {
@@ -214,6 +189,17 @@
     background-color: var(--secondaryHighlight);
     color: var(--bodyText);
   }
-  span {
+  span{
+    display: flex;
+    padding: 5px 0;
+  }
+  span p{
+    width: 25%;
+    text-align: center;
+  }
+  span h1{
+    color: var(--highlightText);
+    width: 25%;
+    text-align: center;
   }
 </style>
