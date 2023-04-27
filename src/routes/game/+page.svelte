@@ -1,98 +1,55 @@
 <script>
-  let title = "Guessing Game";
-  let guess = 0;
-  let secondGuess = 1;
-  let thirdGuess = "";
-  let answer = Math.floor(Math.random() * 21); //generates a random number from 1-20
-  let answer2 = Math.floor(Math.random() * 21);
-  let answer3 = "test";
-  let correct = false;
-  let highLow1 = "";
-  let highLow2 = "";
-  let correct3 = "";
+  import { data } from "../../../gamedata.js";
+
+  let random = Math.floor(Math.random() * 100); //generates a random number from 1-99
+  let answer = data[random];
+
+  let guess = data[0];
+
+  let correctGuess = false;
+
   let guesses = 0;
   let previousGuesses = 0;
-  let previousGame = 0;
-  let changeGuess = () => {
-    guess = document.getElementById("guess")?.value;
-    secondGuess = document.getElementById("secondGuess")?.value;
-    thirdGuess = document.getElementById("thirdGuess")?.value;
+
+  let changeGuess = () =>
     //sets the value of the players guesses to the value in the input.
-  };
+    {
+      let temp = document.getElementById("selectAnswer")?.value;
+      console.log(temp);
+      guess = temp;
+    };
   let reset = () =>
     //resets the game by resetting the random answers, guesses and count.
     {
-      guess = 0;
       guesses = 0;
-      answer = Math.floor(Math.random() * 21);
-      highLow1 = "";
-      highLow2 = "";
-      correct = false;
+      random = Math.floor(Math.random() * 100);
+      answer = data[random];
+      correctGuess = false;
     };
-  let checkAnswer = () => {
-    guesses++;
-    if (answer == guess && answer2 == secondGuess && answer3 == thirdGuess) {
-      //if the guess is correct, correct is true.
-      correct = true;
-      highLow1 = "";
-      highLow2 = "";
-      previousGuesses = guesses;
-      previousGame = answer;
-    } else {
-      correct = false;
-      if (answer < guess) {
-        //shows if the guess is too high or too low.
-        highLow1 = "too high";
-      } else if (answer > guess) {
-        highLow1 = "too low";
-      } else {
-        highLow1 = "Correct!";
+  let checkAnswer = () => 
+    //checks if the answer is correct
+    {
+      guesses++;
+      if (guess === answer)
+      {
+        correctGuess = true;
       }
-      if (answer2 < secondGuess) {
-        //shows if the guess is too high or too low.
-        highLow2 = "too high";
-      } else if (answer2 > secondGuess) {
-        highLow2 = "too low";
-      } else {
-        highLow2 = "Correct!";
-      }
-      if (answer3 == thirdGuess) {
-        correct3 = "Correct!";
-      } else {
-        correct3 = "Incorrect!";
-      }
-    }
+      console.log(guess);
+      console.log(correctGuess);
   };
 </script>
 
-<h1>{title}</h1>
-<form>
-  <!--inputs for guessing-->
-  <input
-    type="number"
-    id="guess"
-    name="guess"
-    min="1"
-    max="20"
-    placeholder="1"
-    on:change={changeGuess}
-  />
-  <input
-    type="number"
-    id="secondGuess"
-    name="secondGuess"
-    min="1"
-    max="20"
-    placeholder="1"
-    on:change={changeGuess}
-  />
-  <input
-    type="text"
-    id="thirdGuess"
-    name="thirdGuess"
-    on:change={changeGuess}
-  />
-</form>
+<h1>Game</h1>
+<br>
+<p>{answer.Title}</p>
+<br>
+<label for="selectAnser">Select Answer:</label>
+<select name="answer" id="selectAnser" on:change={changeGuess}>
+  {#each data as game}
+    <option value={game}>{game.Title}</option>
+  {/each}
+</select>
+<br>
 <section class="buttons">
   <button class="checkButton" on:click={checkAnswer}>
     <!--checks if the answer is correct-->
@@ -103,19 +60,9 @@
     Reset
   </button>
 </section>
-<p>
-  {highLow1}
-  {highLow2}
-  {correct3}
-</p>
 <br />
 <p>
-  {correct === true ? `Correct! You guessed it in ${guesses} guesses` : ""}
-</p>
-<br />
-<p>
-  Previous Game:<br />
-  Number: {previousGame} Guesses: {previousGuesses}
+  {correctGuess === true ? `Correct! You guessed it in ${guesses} guesses` : ""}
 </p>
 
 <style>
@@ -130,19 +77,6 @@
   p {
     display: flex;
     justify-content: center;
-  }
-  form {
-    display: flex;
-    justify-content: center;
-    margin: 10px;
-    margin-bottom: 0px;
-  }
-  form input {
-    background-color: rgba(0, 0, 0, 0);
-    height: 25px;
-    font-size: 25px;
-    color: var(--bodyText);
-    width: 10rem;
   }
   .buttons {
     display: flex;
