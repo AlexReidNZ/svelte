@@ -39,8 +39,6 @@
   };
 </script>
 
-<h1>Game</h1>
-<br>
 <p>{answer.Title}</p>
 <br>
 <label for="selectAnser">Select Answer:</label>
