@@ -3,11 +3,13 @@
 
   let platform = "";
   let genre = "";
-  let year = 2020;
+  let firstYear = 2000;
+  let lastYear = 2020;
   let game = data;
 
   let genres = ["Platformer", "Puzzle", "RPG", "Shooter", "Adventure"];
   let platforms = ["PC", "Nintendo", "PS", "Xbox","iOS"];
+  let years = [2000,2001,2002,2003,2004,2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020];
 
   console.log(data);
 
@@ -19,16 +21,20 @@
     let temp = document.getElementById("genreSelect")?.value;
     genre = temp;
   };
-  let changeYear = () => {
-    let temp = document.getElementById("year")?.value;
-    year = temp;
+  let changeFirstYear = () => {
+    let temp = document.getElementById("firstYearSelect")?.value;
+    firstYear = temp;
+  };
+  let changeLastYear = () => {
+    let temp = document.getElementById("lastYearSelect")?.value;
+    lastYear = temp;
   };
   let displayData = () => {
     game = [];
     let count = 0;
 
     for (let i = 0; i < data.length; i++) {
-      if (data[i].ReleaseYear <= year && data[i].Platforms.includes(platform)) {
+      if (data[i].ReleaseYear <= lastYear && data[i].ReleaseYear >= firstYear && data[i].Platforms.includes(platform)) {
         //if Platform and year match
         if (genre == "Other") {
           //If other is selected, check that each game DOESN'T have any of the listed genres
@@ -76,25 +82,23 @@
     </select>
   </section>
   <section class="filterSeperator">
-    <!--Contains slider for selecting year-->
-    <label for="year">Year:</label>
-    <input
-      type="range"
-      id="year"
-      name="year"
-      min="2000"
-      max="2020"
-      value="2020"
-      list="yearMarkers"
-      on:change={changeYear}
-    />
-    <datalist id="yearMarkers">
-      <option value="2000" label="2000" />
-      <option value="2005" label="2005" />
-      <option value="2010" label="2010" />
-      <option value="2015" label="2015" />
-      <option value="2020" label="2020" />
-    </datalist>
+    <label for="firstYearSelect">Year:</label>
+    <select name="firstYear" id="firstYearSelect" on:change={changeFirstYear}>
+      {#each years as year}
+      {#if year <= lastYear}
+        <option value={year}>{year}</option>
+      {/if}
+      {/each}
+    </select>
+    <label for="lastYearSelector">-</label>
+    <select name="lastYear" id="lastYearSelect" on:change={changeLastYear}>
+      {#each years as year}
+        {#if year >= firstYear}
+          <option value={year}>{year}</option>
+        {/if}
+      {/each}
+      <option value="" selected hidden disabled>2020</option> <!--Will be shown by default at the start-->
+    </select>
   </section>
 </section>
 
@@ -104,7 +108,7 @@
   <ul>
     <li>Platform: {platform}</li>
     <li>Genre: {genre}</li>
-    <li>Year: {year}</li>
+    <li>Year: {firstYear}-{lastYear}</li>
   </ul>
 </details>
 
@@ -122,25 +126,6 @@
     padding-top: 10px;
     display: flex;
     justify-content: space-evenly;
-  }
-  input[type="range"] {
-    width: 200px;
-    color: var(--highlightText);
-  }
-  input[type="range"]::-webkit-slider-runnable-track {
-    background-color: var(--darkColour);
-    cursor: default;
-    border-radius: 10px;
-  }
-  datalist {
-    display: flex;
-    justify-content: space-evenly;
-    width: 200px;
-    padding-left: 40px;
-  }
-  datalist option {
-    color: white;
-    padding: 0px 7px;
   }
   label {
     width: fit-content;
