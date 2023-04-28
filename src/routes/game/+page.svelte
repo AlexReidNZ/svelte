@@ -3,19 +3,24 @@
 
   let random = Math.floor(Math.random() * 100); //generates a random number from 1-99
   let answer = data[random];
-
-  let guess = data[0];
-
-  let correctGuess = false;
+  let clues = [
+    answer.ReleaseYear.toString(),
+    answer.Genre,
+    answer.Developer,
+    answer.Platforms,
+  ];
+  let givenClues = [answer.ReleaseYear.toString()];
 
   let guesses = 0;
-  let previousGuesses = 0;
+
+  let guess = data[0].Title;
+
+  let correctGuess = false;
 
   let changeGuess = () =>
     //sets the value of the players guesses to the value in the input.
     {
       let temp = document.getElementById("selectAnswer")?.value;
-      console.log(temp);
       guess = temp;
     };
   let reset = () =>
@@ -24,30 +29,45 @@
       guesses = 0;
       random = Math.floor(Math.random() * 100);
       answer = data[random];
+      clues = [
+        answer.ReleaseYear.toString(),
+        answer.Genre,
+        answer.Developer,
+        answer.Platforms,
+      ];
+
       correctGuess = false;
+      givenClues = [answer.ReleaseYear.toString()];
     };
-  let checkAnswer = () => 
+  let checkAnswer = () =>
     //checks if the answer is correct
     {
       guesses++;
-      if (guess === answer)
-      {
+      if (guesses < clues.length) {
+        givenClues = [];
+        for (let i = 0; i <= guesses; i++) {
+          givenClues[i] = clues[i];
+        }
+      }
+      console.log(givenClues);
+
+      if (guess === answer.Title) {
         correctGuess = true;
       }
-      console.log(guess);
-      console.log(correctGuess);
-  };
+    };
 </script>
 
-<p>{answer.Title}</p>
-<br>
+{#each givenClues as clue}
+  <p>{clue}</p>
+{/each}
+<br />
 <label for="selectAnser">Select Answer:</label>
-<select name="answer" id="selectAnser" on:change={changeGuess}>
+<select name="answer" id="selectAnswer" on:change={changeGuess}>
   {#each data as game}
-    <option value={game}>{game.Title}</option>
+    <option value={game.Title}>{game.Title}</option>
   {/each}
 </select>
-<br>
+<br />
 <section class="buttons">
   <button class="checkButton" on:click={checkAnswer}>
     <!--checks if the answer is correct-->
@@ -60,7 +80,9 @@
 </section>
 <br />
 <p>
-  {correctGuess === true ? `Correct! You guessed it in ${guesses} guesses` : ""}
+  {correctGuess === true
+    ? `Correct! You guessed it in ${guesses} guesses`
+    : `Incorrect! ${guesses} guesses.`}
 </p>
 
 <style>
