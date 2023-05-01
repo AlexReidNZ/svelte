@@ -3,19 +3,33 @@
 
   let random = Math.floor(Math.random() * 100); //generates a random number from 1-99
   let answer = data[random];
+  let nameHint = answer.Title.charAt(0).toString();
+  for (let i = 1; i < answer.Title.length; i++) {
+    if (answer.Title.charAt(i) != " ") {
+      nameHint = nameHint + "_";
+    } else {
+      nameHint = nameHint + " ";
+    }
+  }
   let clues = [
-    answer.ReleaseYear.toString(),
-    answer.Genre,
-    answer.Developer,
-    answer.Platforms,
+    `Release Year: ${answer.ReleaseYear.toString()}`,
+    `Genre: ${answer.Genre}`,
+    `Developer: ${answer.Developer}`,
+    `Platforms ${answer.Platforms}`,
+    nameHint,
   ];
-  let givenClues = [answer.ReleaseYear.toString()];
+  let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
 
   let guesses = 0;
 
   let guess = data[0].Title;
 
   let correctGuess = false;
+
+  let previousGames = [""];
+  previousGames = [];
+  let previousGuesses = [0];
+  previousGuesses = [];
 
   let changeGuess = () =>
     //sets the value of the players guesses to the value in the input.
@@ -29,15 +43,24 @@
       guesses = 0;
       random = Math.floor(Math.random() * 100);
       answer = data[random];
+      nameHint = answer.Title.charAt(0).toString();
+      for (let i = 1; i < answer.Title.length; i++) {
+        if (answer.Title.charAt(i) != " ") {
+          nameHint = nameHint + "_";
+        } else {
+          nameHint = nameHint + " ";
+        }
+      }
       clues = [
-        answer.ReleaseYear.toString(),
-        answer.Genre,
-        answer.Developer,
-        answer.Platforms,
+        `Release Year: ${answer.ReleaseYear.toString()}`,
+        `Genre: ${answer.Genre}`,
+        `Developer: ${answer.Developer}`,
+        `Platforms ${answer.Platforms}`,
+        nameHint,
       ];
 
       correctGuess = false;
-      givenClues = [answer.ReleaseYear.toString()];
+      givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
     };
   let checkAnswer = () =>
     //checks if the answer is correct
@@ -49,25 +72,34 @@
           givenClues[i] = clues[i];
         }
       }
-      console.log(givenClues);
 
       if (guess === answer.Title) {
         correctGuess = true;
+        givenClues = clues;
+        previousGuesses.push(guesses);
+        let tempGuesses = previousGuesses;
+        previousGuesses = tempGuesses;
+        previousGames.push(answer.Title);
+        let tempTitles = previousGames;
+        previousGames = tempTitles;
       }
     };
 </script>
 
-{#each givenClues as clue}
-  <p>{clue}</p>
-{/each}
-<br />
-<label for="selectAnser">Select Answer:</label>
-<select name="answer" id="selectAnswer" on:change={changeGuess}>
-  {#each data as game}
-    <option value={game.Title}>{game.Title}</option>
+<section class="clues">
+  <h2>Hints:</h2>
+  {#each givenClues as clue}
+    <p>{clue}</p>
   {/each}
-</select>
-<br />
+</section>
+<section class="answerSelector">
+  <label for="selectAnser">Select Answer:</label>
+  <select name="answer" id="selectAnswer" on:change={changeGuess}>
+    {#each data as game}
+      <option value={game.Title}>{game.Title}</option>
+    {/each}
+  </select>
+</section>
 <section class="buttons">
   <button class="checkButton" on:click={checkAnswer}>
     <!--checks if the answer is correct-->
@@ -78,25 +110,44 @@
     Reset
   </button>
 </section>
-<br />
 <p>
   {correctGuess === true
     ? `Correct! You guessed it in ${guesses} guesses`
     : `Incorrect! ${guesses} guesses.`}
 </p>
+<br />
+<section class="scores">
+  <h2>Previous Scores:</h2>
+  {#each previousGames as game, index}
+    <p>Game: {game} Guesses: {previousGuesses[index]}</p>
+    <br />
+  {/each}
+</section>
 
 <style>
-  h1 {
-    font-size: 30px;
-    font-style: italic;
-    font-weight: normal;
-    display: flex;
-    justify-content: center;
-    margin: 0px;
-  }
   p {
     display: flex;
     justify-content: center;
+  }
+  section {
+    padding: 10px;
+  }
+  .clues {
+    padding: 50px 10px;
+    justify-content: center;
+    height: 9lh;
+  }
+  .answerSelector {
+    display: flex;
+    justify-content: center;
+  }
+  label {
+    padding-right: 10px;
+  }
+  h2 {
+    display: flex;
+    justify-content: center;
+    color: var(--highlightText);
   }
   .buttons {
     display: flex;
