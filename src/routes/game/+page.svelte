@@ -1,10 +1,16 @@
 <script>
   import { data } from "../../../gamedata.js";
 
+  data.sort((a, b) => {
+    //Sorts the data alphabetically by title
+    return a.Title.localeCompare(b.Title);
+  });
+
   let random = Math.floor(Math.random() * 100); //generates a random number from 1-99
   let answer = data[random];
   let nameHint = answer.Title.charAt(0).toString();
-  for (let i = 1; i < answer.Title.length; i++) { //Creates a hangman style clue
+  for (let i = 1; i < answer.Title.length; i++) {
+    //Creates a hangman style clue
     if (answer.Title.charAt(i) != " ") {
       nameHint = nameHint + "_";
     } else {
@@ -16,7 +22,7 @@
     `Genre: ${answer.Genre}`,
     `Developer: ${answer.Developer}`,
     `Platforms ${answer.Platforms}`,
-    nameHint
+    nameHint,
   ];
   let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
 
@@ -65,11 +71,13 @@
   let checkAnswer = () =>
     //checks if the answer is correct
     {
-      if (!correctGuess) { //If the game is not over
+      if (!correctGuess) {
+        //If the game is not over
         guesses++;
-        if (guesses < clues.length) { //gives the player the next clue if they don't already have them all
+        if (guesses < clues.length) {
+          //gives the player the next clue if they don't already have them all
           givenClues = [];
-          for (let i = 0; i <= guesses; i++) { 
+          for (let i = 0; i <= guesses; i++) {
             givenClues[i] = clues[i];
           }
         }
