@@ -65,23 +65,25 @@
   let checkAnswer = () =>
     //checks if the answer is correct
     {
-      guesses++;
-      if (guesses < clues.length) {
-        givenClues = [];
-        for (let i = 0; i <= guesses; i++) {
-          givenClues[i] = clues[i];
+      if (!correctGuess) {
+        guesses++;
+        if (guesses < clues.length) {
+          givenClues = [];
+          for (let i = 0; i <= guesses; i++) {
+            givenClues[i] = clues[i];
+          }
         }
-      }
 
-      if (guess === answer.Title) {
-        correctGuess = true;
-        givenClues = clues;
-        previousGuesses.push(guesses);
-        let tempGuesses = previousGuesses;
-        previousGuesses = tempGuesses;
-        previousGames.push(answer.Title);
-        let tempTitles = previousGames;
-        previousGames = tempTitles;
+        if (guess === answer.Title) {
+          correctGuess = true;
+          givenClues = clues;
+          previousGuesses.push(guesses);
+          let tempGuesses = previousGuesses;
+          previousGuesses = tempGuesses;
+          previousGames.push(answer.Title);
+          let tempTitles = previousGames;
+          previousGames = tempTitles;
+        }
       }
     };
 </script>
