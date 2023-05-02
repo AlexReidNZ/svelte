@@ -40,16 +40,16 @@
     margin-bottom: 5px;
     margin-top: 5px;
   }
-  button:hover {
-    background-color: var(--secondaryHighlight);
-  }
   a {
     display: block;
     padding: 8px;
     color: black;
     text-decoration: underline var(--secondaryHighlight);
   }
-  a:hover {
+  button:hover {
+    background-color: var(--secondaryHighlight);
+  }
+  button:hover a{
     color: white;
     text-decoration: underline var(--highlightText);
   }
