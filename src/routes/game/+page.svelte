@@ -6,7 +6,7 @@
     return a.Title.localeCompare(b.Title);
   });
 
-  let random = Math.floor(Math.random() * 100); //generates a random number from 1-99
+  let random = Math.floor(Math.random() * 100); //generates a random number from 0-99
   let answer = data[random];
   let nameHint = answer.Title.charAt(0).toString();
   for (let i = 1; i < answer.Title.length; i++) {

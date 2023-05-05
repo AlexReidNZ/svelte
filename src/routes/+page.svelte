@@ -1,13 +1,11 @@
-<!--<script>
-    let img;
+<script>
+    const BASE_URL = "https://www.giantbomb.com/api";
 
-    const BASE_URL = "https://api.unsplash.com";
-
-    fetch(`${BASE_URL}/search/photos/?client_id=skDU48Yd4CUD6X2AaBJDlof39G4ykmRrVtvUKKLG2Ks`)
-    .then(res => res.json())
-    .then(data => {
-        img=data.results[0].urls.full;
-    })
-</script>-->
+    fetch(`${BASE_URL}/games/?api_key=cb638b4d991587308456a3533f0914df1b87309d&format=json&field_list=name`)
+    .then(res => {
+        console.log(res)
+    });
+    
+</script>
 
 <p>this is the home page.</p>
