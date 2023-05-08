@@ -85,7 +85,8 @@
         margin-right: 5px;
         margin-bottom: 5px;
         margin-top: 5px;
-        width: 15em;
+        height: 3em;
+        width: 7em;
     }
     a {
         color: var(--highlightText);

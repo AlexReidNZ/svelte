@@ -174,6 +174,7 @@
   </ul>
 </details>
 <section class="DisplayedList">
+  <h1>You Should Play...</h1>
   <span>
     <h2>Title</h2>
     <h2>Genre</h2>
@@ -246,6 +247,11 @@
   span h2 {
     color: var(--highlightText);
     width: 20%;
+    text-align: center;
+    font-size: 20px;
+  }
+  h1{
+    color: var(--highlightText);
     text-align: center;
   }
 </style>

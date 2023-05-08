@@ -2,17 +2,17 @@
   import Navigation from "./navigation.svelte";
 </script>
 
-  <header>HEADER</header>
+  <header>Gamedle</header>
   <Navigation />
 
 <style>
   header {
-    height: 3vh;
-    min-height: 25px;
+    height: 5vh;
+    min-height: 40px;
     color: var(--highlightText);
     background-color: var(--darkColour);
     display: flex;
     justify-content: center;
-    font-size: 25px;
+    font-size: 40px;
   }
 </style>

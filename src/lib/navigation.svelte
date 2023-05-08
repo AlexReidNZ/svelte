@@ -49,7 +49,7 @@
   button:hover {
     background-color: var(--secondaryHighlight);
   }
-  button:hover a{
+  button:hover a {
     color: white;
     text-decoration: underline var(--highlightText);
   }
