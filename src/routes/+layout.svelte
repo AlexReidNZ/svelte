@@ -19,4 +19,7 @@
     background-size: 100%;
     margin: 0px;
   }
+  main{
+    padding-top: 10vh;
+  }
 </style>
