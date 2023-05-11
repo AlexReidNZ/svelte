@@ -24,7 +24,7 @@
     `Platforms ${answer.Platforms}`,
     nameHint,
   ];
-  let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
+  let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`]; //The year is the first given clue
 
   let guesses = 0;
 
@@ -44,7 +44,7 @@
       guess = temp;
     };
   let reset = () =>
-    //resets the game by resetting the random answers, guesses and count.
+    //resets the game by resetting the random answer, cluse, guesses and count.
     {
       guesses = 0;
       random = Math.floor(Math.random() * 100);
@@ -84,11 +84,11 @@
 
         if (guess === answer.Title) {
           correctGuess = true;
-          givenClues = clues;
-          previousGuesses.push(guesses);
+          givenClues = clues; //shows the player all of the clues
+          previousGuesses.push(guesses); //adds their score for this game to the array of past scores
           let tempGuesses = previousGuesses;
           previousGuesses = tempGuesses;
-          previousGames.push(answer.Title);
+          previousGames.push(answer.Title); //adds the answer for this game to the array of past answers
           let tempTitles = previousGames;
           previousGames = tempTitles;
         }
