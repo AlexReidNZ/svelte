@@ -1,16 +1,21 @@
 <script>
-  
+  import NavCard from "../lib/navCard.svelte";
+
+  let pages = ["about", "suggestor", "game"];
 </script>
 
 <section class="container">
   <h1>Welcome to Gamedle!</h1>
   <br />
   <p>
-    See the <a href="about">about page</a> to learn more, or if you already know
-    what you're doing here, go straight to the
-    <a href="suggestor">game suggestor</a>
-    or <a href="game">play a game!</a>
+    See the about page to learn more, or if you already know what you're doing
+    here, go straight to the game suggestor or play a game!
   </p>
+  <section class="cards">
+    {#each pages as page}
+      <NavCard pageName={page} />
+    {/each}
+  </section>
 </section>
 
 <style>
@@ -22,22 +27,14 @@
   p {
     align-self: center;
   }
-  a {
-    color: var(--highlightText);
-    text-decoration: underline;
-    text-decoration-color: var(--highlightText);
-  }
-  a:visited {
-    color: var(--highlightText);
-    text-decoration: underline;
-    text-decoration-color: var(--highlightText);
-  }
-  a:hover {
-    color: var(--mainText);
-  }
   h1 {
     color: var(--highlightText);
     align-self: center;
     margin: 0;
+  }
+  .cards{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
   }
 </style>

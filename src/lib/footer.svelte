@@ -1,10 +1,17 @@
-<footer>funny footer</footer>
-
+<div>
+<footer>Background image sourced from: <a href="https://unsplash.com/photos/JN3HCJvZEFA">https://unsplash.com/photos/JN3HCJvZEFA</a></footer>
+</div>
 <style>
-  footer {
-    color: var(--highlightText);
+  div{
     background-color: var(--darkColour);
     height: 5vh;
     margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    color: var(--highlightText);
+  }
+  a{
+    color: var(--highlightText);
   }
 </style>

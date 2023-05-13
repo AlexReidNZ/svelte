@@ -145,7 +145,7 @@
     padding: 10px;
   }
   .clues {
-    padding: 50px 10px;
+    padding: 0px 10px;
     justify-content: center;
     height: 9lh;
   }
