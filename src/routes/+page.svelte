@@ -2,7 +2,7 @@
   
 </script>
 
-<section>
+<section class="container">
   <h1>Welcome to Gamedle!</h1>
   <br />
   <p>

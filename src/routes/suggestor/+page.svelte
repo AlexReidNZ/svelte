@@ -56,10 +56,10 @@
       });
     }
     if (sorter == "Developer") {
-      data.sort((a,b) => {
+      data.sort((a, b) => {
         //Sorts the data alphabetically by developer
         return a.Developer.localeCompare(b.Developer);
-      })
+      });
     }
     if (sorter == "Release Year") {
       data.sort((a, b) => {
@@ -105,92 +105,94 @@
   };
 </script>
 
-<section class="options">
-  <!--Section that contains inputs for options-->
-  <section class="filterSeperator">
-    <label for="platformSelect">Platform:</label>
-    <select name="platform" id="platformSelect" on:change={changePlatform}>
-      <option value="">Any</option>
-      {#each platforms as platform}
-        <option value={platform}>{platform}</option>
-      {/each}
-    </select>
+<section class="container">
+  <section class="options">
+    <!--Section that contains inputs for options-->
+    <section class="filterSeperator">
+      <label for="platformSelect">Platform:</label>
+      <select name="platform" id="platformSelect" on:change={changePlatform}>
+        <option value="">Any</option>
+        {#each platforms as platform}
+          <option value={platform}>{platform}</option>
+        {/each}
+      </select>
+    </section>
+    <section class="filterSeperator">
+      <label for="genreSelect">Genre:</label>
+      <select name="genre" id="genreSelect" on:change={changeGenre}>
+        <option value="">Any</option>
+        {#each genres as genre}
+          <option value={genre}>{genre}</option>
+        {/each}
+        <option value="Other">Other</option>
+      </select>
+    </section>
+    <section class="filterSeperator">
+      <label for="firstYearSelect">Year:</label>
+      <select name="firstYear" id="firstYearSelect" on:change={changeFirstYear}>
+        {#each years as year}
+          {#if year <= lastYear}
+            <option value={year}>{year}</option>
+          {/if}
+        {/each}
+      </select>
+      <label for="lastYearSelect">-</label>
+      <select name="lastYear" id="lastYearSelect" on:change={changeLastYear}>
+        {#each years as year}
+          {#if year >= firstYear}
+            <option value={year}>{year}</option>
+          {/if}
+        {/each}
+        <option value="" selected hidden disabled>2020</option>
+        <!--Will be shown by default at the start-->
+      </select>
+    </section>
+    <section class="filterSeperator">
+      <label for="sortSelect">Sort by:</label>
+      <select name="sort" id="sortSelect" on:change={sort}>
+        {#each sortOptions as option}
+          <option value={option}>{option}</option>
+        {/each}
+      </select>
+    </section>
   </section>
-  <section class="filterSeperator">
-    <label for="genreSelect">Genre:</label>
-    <select name="genre" id="genreSelect" on:change={changeGenre}>
-      <option value="">Any</option>
-      {#each genres as genre}
-        <option value={genre}>{genre}</option>
-      {/each}
-      <option value="Other">Other</option>
-    </select>
-  </section>
-  <section class="filterSeperator">
-    <label for="firstYearSelect">Year:</label>
-    <select name="firstYear" id="firstYearSelect" on:change={changeFirstYear}>
-      {#each years as year}
-        {#if year <= lastYear}
-          <option value={year}>{year}</option>
-        {/if}
-      {/each}
-    </select>
-    <label for="lastYearSelect">-</label>
-    <select name="lastYear" id="lastYearSelect" on:change={changeLastYear}>
-      {#each years as year}
-        {#if year >= firstYear}
-          <option value={year}>{year}</option>
-        {/if}
-      {/each}
-      <option value="" selected hidden disabled>2020</option>
-      <!--Will be shown by default at the start-->
-    </select>
-  </section>
-  <section class="filterSeperator">
-    <label for="sortSelect">Sort by:</label>
-    <select name="sort" id="sortSelect" on:change={sort}>
-      {#each sortOptions as option}
-        <option value={option}>{option}</option>
-      {/each}
-    </select>
-  </section>
-</section>
 
-<details>
-  <!--Displays the currently selected options-->
-  <summary>Current Settings</summary>
-  <ul>
-    {#if platform == ""}
-      <li>Platform: Any</li>
-    {:else}
-      <li>Platform: {platform}</li>
-    {/if}
-    {#if genre == ""}
-      <li>Genre: Any</li>
-    {:else}
-      <li>Genre: {genre}</li>
-    {/if}
-    <li>Year: {firstYear}-{lastYear}</li>
-  </ul>
-</details>
-<section class="DisplayedList">
-  <h1>You Should Play...</h1>
-  <span>
-    <h2>Title</h2>
-    <h2>Genre</h2>
-    <h2>Platforms</h2>
-    <h2>Developer</h2>
-    <h2>Release Year</h2>
-  </span>
-  {#each game as g}
-    <span
-      ><p>{g.Title}</p>
-      <p>{g.Genre}</p>
-      <p>{g.Platforms}</p>
-      <p>{g.Developer}</p>
-      <p>{g.ReleaseYear}</p></span
-    >
-  {/each}
+  <details>
+    <!--Displays the currently selected options-->
+    <summary>Current Settings</summary>
+    <ul>
+      {#if platform == ""}
+        <li>Platform: Any</li>
+      {:else}
+        <li>Platform: {platform}</li>
+      {/if}
+      {#if genre == ""}
+        <li>Genre: Any</li>
+      {:else}
+        <li>Genre: {genre}</li>
+      {/if}
+      <li>Year: {firstYear}-{lastYear}</li>
+    </ul>
+  </details>
+  <section class="DisplayedList">
+    <h1>You Should Play...</h1>
+    <span>
+      <h2>Title</h2>
+      <h2>Genre</h2>
+      <h2>Platforms</h2>
+      <h2>Developer</h2>
+      <h2>Release Year</h2>
+    </span>
+    {#each game as g}
+      <span
+        ><p>{g.Title}</p>
+        <p>{g.Genre}</p>
+        <p>{g.Platforms}</p>
+        <p>{g.Developer}</p>
+        <p>{g.ReleaseYear}</p></span
+      >
+    {/each}
+  </section>
 </section>
 
 <style>
@@ -250,7 +252,7 @@
     text-align: center;
     font-size: 20px;
   }
-  h1{
+  h1 {
     color: var(--highlightText);
     text-align: center;
   }

@@ -96,42 +96,44 @@
     };
 </script>
 
-<section class="clues">
-  <h2>Hints:</h2>
-  {#each givenClues as clue}
-    <p>{clue}</p>
-  {/each}
-</section>
-<section class="answerSelector">
-  <label for="selectAnser">Select Answer:</label>
-  <select name="answer" id="selectAnswer" on:change={changeGuess}>
-    {#each data as game}
-      <option value={game.Title}>{game.Title}</option>
+<section class="container">
+  <section class="clues">
+    <h2>Hints:</h2>
+    {#each givenClues as clue}
+      <p>{clue}</p>
     {/each}
-  </select>
-</section>
-<section class="buttons">
-  <button class="checkButton" on:click={checkAnswer}>
-    <!--checks if the answer is correct-->
-    Check
-  </button>
-  <button class="resetButton" on:click={reset}>
-    <!--lets player reset the game-->
-    Reset
-  </button>
-</section>
-<p>
-  {correctGuess === true
-    ? `Correct! You guessed it in ${guesses} guesses`
-    : `Incorrect! ${guesses} guesses.`}
-</p>
-<br />
-<section class="scores">
-  <h2>Previous Scores:</h2>
-  {#each previousGames as game, index}
-    <p>Game: {game} Guesses: {previousGuesses[index]}</p>
-    <br />
-  {/each}
+  </section>
+  <section class="answerSelector">
+    <label for="selectAnser">Select Answer:</label>
+    <select name="answer" id="selectAnswer" on:change={changeGuess}>
+      {#each data as game}
+        <option value={game.Title}>{game.Title}</option>
+      {/each}
+    </select>
+  </section>
+  <section class="buttons">
+    <button class="checkButton" on:click={checkAnswer}>
+      <!--checks if the answer is correct-->
+      Check
+    </button>
+    <button class="resetButton" on:click={reset}>
+      <!--lets player reset the game-->
+      Reset
+    </button>
+  </section>
+  <p>
+    {correctGuess === true
+      ? `Correct! You guessed it in ${guesses} guesses`
+      : `Incorrect! ${guesses} guesses.`}
+  </p>
+  <br />
+  <section class="scores">
+    <h2>Previous Scores:</h2>
+    {#each previousGames as game, index}
+      <p>Game: {game} Guesses: {previousGuesses[index]}</p>
+      <br />
+    {/each}
+  </section>
 </section>
 
 <style>

@@ -42,4 +42,16 @@
     margin: auto;
     padding-top: 10vh;
   }
+  slot{
+  animation-name: slide-in;
+    animation-duration: 1s;
+  }
+  @keyframes slide-in{
+    from{
+      transform: translateY(-200%);
+    }
+    to{
+      transfrom: translateY(0%);
+    }
+  }
 </style>
