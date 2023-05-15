@@ -40,6 +40,7 @@
     {
       guess = document.querySelector("select")?.value;
     };
+
   let reset = () =>
     //resets the game by resetting the random answer, cluse, guesses and count.
     {
@@ -64,7 +65,9 @@
 
       correctGuess = false;
       givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
+      console.log(answer.Title);
     };
+
   let checkAnswer = () =>
     //checks if the answer is correct
     {
@@ -80,7 +83,7 @@
         }
 
         if (guess === answer.Title) {
-          correctGuess = true;
+          correctGuess = true; //Stops the player from guessing again
           givenClues = clues; //shows the player all of the clues
           previousGuesses.push(guesses); //adds their score for this game to the array of past scores
           let tempGuesses = previousGuesses;
@@ -114,7 +117,7 @@
       Check
     </button>
     <button class="resetButton" on:click={reset}>
-      <!--lets player reset the game-->
+      <!--lets the player reset the game-->
       Reset
     </button>
   </section>
@@ -124,12 +127,16 @@
       : `Incorrect! ${guesses} guesses.`}
   </p>
   <br />
-  <section class="scores">
+  <section>
     <h2>Previous Scores:</h2>
-    {#each previousGames as game, index}
-      <p>Game: {game} Guesses: {previousGuesses[index]}</p>
-      <br />
-    {/each}
+    <div class="scores">
+      {#each previousGames as game, index}
+        <!--Displays the previous scores-->
+        <p>Game: {game}</p>
+        <p>Guesses: {previousGuesses[index]}</p>
+        <br />
+      {/each}
+    </div>
   </section>
 </section>
 
@@ -181,5 +188,9 @@
   .checkButton:hover {
     background-color: rgb(26, 204, 26);
     border-color: rgb(26, 204, 26);
+  }
+  .scores {
+    display: flex;
+    flex-direction: column;
   }
 </style>
