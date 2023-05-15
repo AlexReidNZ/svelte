@@ -12,8 +12,8 @@
 
 <section class="container">
   <section class="tabs">
-    <button on:click={suggestorActive}>About The Suggestor</button>
-    <button on:click={gameActive}>About The Game</button>
+    <button on:click={suggestorActive} class:activeButton={suggestor == true}>About The Suggestor</button>
+    <button on:click={gameActive} class:activeButton={suggestor == false}>About The Game</button>
   </section>
 
   <section class="content">
@@ -87,6 +87,14 @@
     margin-top: 5px;
     height: 3em;
     width: 7em;
+  }
+  button:hover {
+    background-color: var(--secondaryHighlight);
+    color: white;
+  }
+  .activeButton{
+    background-color: var(--secondaryHighlight);
+    color: white;
   }
   a {
     color: var(--highlightText);
