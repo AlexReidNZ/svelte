@@ -21,27 +21,23 @@
   const sortOptions = ["Title", "Genre", "Developer", "Release Year"];
 
   let changePlatform = () => {
-    let temp = document.getElementById("platformSelect")?.value;
-    platform = temp;
+    platform = document.querySelector("select.platformSelect")?.value;
     displayData();
   };
   let changeGenre = () => {
-    let temp = document.getElementById("genreSelect")?.value;
-    genre = temp;
+    genre = document.querySelector("select.genreSelect")?.value;
     displayData();
   };
   let changeFirstYear = () => {
-    let temp = document.getElementById("firstYearSelect")?.value;
-    firstYear = temp;
+    firstYear = document.querySelector("select.firstYearSelect")?.value;
     displayData();
   };
   let changeLastYear = () => {
-    let temp = document.getElementById("lastYearSelect")?.value;
-    lastYear = temp;
+    lastYear = document.querySelector("select.lastYearSelect")?.value;
     displayData();
   };
   let sort = () => {
-    let sorter = document.getElementById("sortSelect")?.value;
+    let sorter = document.querySelector("select.sortSelect")?.value;
 
     if (sorter == "Title") {
       data.sort((a, b) => {
@@ -110,7 +106,7 @@
     <!--Section that contains inputs for options-->
     <section class="filterSeperator">
       <label for="platformSelect">Platform:</label>
-      <select name="platform" id="platformSelect" on:change={changePlatform}>
+      <select name="platform" id="platformSelect" class="platformSelect" on:change={changePlatform}>
         <option value="">Any</option>
         {#each platforms as platform}
           <option value={platform}>{platform}</option>
@@ -119,7 +115,7 @@
     </section>
     <section class="filterSeperator">
       <label for="genreSelect">Genre:</label>
-      <select name="genre" id="genreSelect" on:change={changeGenre}>
+      <select name="genre" id="genreSelect" class="genreSelect" on:change={changeGenre}>
         <option value="">Any</option>
         {#each genres as genre}
           <option value={genre}>{genre}</option>
@@ -129,7 +125,7 @@
     </section>
     <section class="filterSeperator">
       <label for="firstYearSelect">Year:</label>
-      <select name="firstYear" id="firstYearSelect" on:change={changeFirstYear}>
+      <select name="firstYear" id="firstYearSelect" class="firstYearSelect" on:change={changeFirstYear}>
         {#each years as year}
           {#if year <= lastYear}
             <option value={year}>{year}</option>
@@ -137,7 +133,7 @@
         {/each}
       </select>
       <label for="lastYearSelect">-</label>
-      <select name="lastYear" id="lastYearSelect" on:change={changeLastYear}>
+      <select name="lastYear" id="lastYearSelect" class="lastYearSelect" on:change={changeLastYear}>
         {#each years as year}
           {#if year >= firstYear}
             <option value={year}>{year}</option>
@@ -149,7 +145,7 @@
     </section>
     <section class="filterSeperator">
       <label for="sortSelect">Sort by:</label>
-      <select name="sort" id="sortSelect" on:change={sort}>
+      <select name="sort" id="sortSelect" class="sortSelect" on:change={sort}>
         {#each sortOptions as option}
           <option value={option}>{option}</option>
         {/each}

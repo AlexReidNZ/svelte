@@ -40,8 +40,7 @@
   let changeGuess = () =>
     //sets the value of the players guesses to the value in the input.
     {
-      let temp = document.getElementById("selectAnswer")?.value;
-      guess = temp;
+      guess = document.querySelector("select")?.value;
     };
   let reset = () =>
     //resets the game by resetting the random answer, cluse, guesses and count.
