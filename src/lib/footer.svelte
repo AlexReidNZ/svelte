@@ -10,6 +10,7 @@
     flex-direction: column;
     justify-content: center;
     color: var(--highlightText);
+    font-size: 12px;
   }
   a{
     color: var(--highlightText);

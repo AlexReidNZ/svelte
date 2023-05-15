@@ -10,6 +10,7 @@
   let genre = "";
   let firstYear = 2000;
   let lastYear = 2020;
+  let sorter = "Title";
   let game = data;
 
   const genres = ["Platformer", "Puzzle", "RPG", "Shooter", "Adventure"];
@@ -37,7 +38,7 @@
     displayData();
   };
   let sort = () => {
-    let sorter = document.querySelector("select.sortSelect")?.value;
+    sorter = document.querySelector("select.sortSelect")?.value;
 
     if (sorter == "Title") {
       data.sort((a, b) => {
@@ -188,6 +189,7 @@
         <li>Genre: {genre}</li>
       {/if}
       <li>Year: {firstYear}-{lastYear}</li>
+      <li>Sorted By: {sorter}</li>
     </ul>
   </details>
   <section class="DisplayedList">

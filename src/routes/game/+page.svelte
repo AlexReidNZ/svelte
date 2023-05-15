@@ -12,9 +12,9 @@
   for (let i = 1; i < answer.Title.length; i++) {
     //Creates a hangman style clue
     if (answer.Title.charAt(i) != " ") {
-      nameHint = nameHint + "_";
+      nameHint += "_";
     } else {
-      nameHint = nameHint + " ";
+      nameHint += " ";
     }
   }
   let clues = [
@@ -32,10 +32,8 @@
 
   let correctGuess = false;
 
-  let previousGames = [""];
-  previousGames = [];
-  let previousGuesses = [0];
-  previousGuesses = [];
+  let previousGames = [];
+  let previousGuesses = [];
 
   let changeGuess = () =>
     //sets the value of the players guesses to the value in the input.
@@ -51,9 +49,9 @@
       nameHint = answer.Title.charAt(0).toString();
       for (let i = 1; i < answer.Title.length; i++) {
         if (answer.Title.charAt(i) != " ") {
-          nameHint = nameHint + "_";
+          nameHint += "_";
         } else {
-          nameHint = nameHint + " ";
+          nameHint += " ";
         }
       }
       clues = [
