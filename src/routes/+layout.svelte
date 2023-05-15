@@ -3,7 +3,7 @@
   import Header from "$lib/header.svelte";
   import Footer from "$lib/footer.svelte";
 
-//Fetch for getting "gaming" images from unsplash
+  //Fetch for getting "gaming" images from unsplash
 
   // let imagesArray = [];
 
@@ -45,15 +45,15 @@
     padding-top: 10vh;
     box-shadow: 10px;
   }
-  slot{
-  animation-name: slide-in;
+  slot {
+    animation-name: slide-in;
     animation-duration: 1s;
   }
-  @keyframes slide-in{
-    from{
+  @keyframes slide-in {
+    from {
       transform: translateY(-200%);
     }
-    to{
+    to {
       transfrom: translateY(0%);
     }
   }

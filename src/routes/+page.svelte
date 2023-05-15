@@ -32,7 +32,7 @@
     align-self: center;
     margin: 0;
   }
-  .cards{
+  .cards {
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
