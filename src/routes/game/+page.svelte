@@ -96,11 +96,9 @@
           correctGuess = true; //Stops the player from guessing again
           givenClues = clues; //shows the player all of the clues
           previousGuesses.push(guesses); //adds their score for this game to the array of past scores
-          let tempGuesses = previousGuesses;
-          previousGuesses = tempGuesses;
+          previousGuesses = previousGuesses;
           previousGames.push(answer.Title); //adds the answer for this game to the array of past answers
-          let tempTitles = previousGames;
-          previousGames = tempTitles;
+          previousGames = previousGames;
 
           localStorage.setItem("games", previousGames);
           localStorage.setItem("guesses", previousGuesses);

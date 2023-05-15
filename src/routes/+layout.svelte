@@ -32,7 +32,7 @@
   main {
     background-color: var(--lightColour);
     background-repeat: no-repeat;
-    background-image: url("../static/images/Background.jpg");
+    background-image: url("../images/Background.jpg");
     background-repeat: repeat;
   }
   div {
