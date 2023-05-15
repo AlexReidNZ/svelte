@@ -658,7 +658,7 @@ export const data=[
       "ReleaseYear": 2017
     },
     {
-      "Title": "God of War",
+      "Title": "God of War (2018)",
       "Genre": "Action-Adventure",
       "Platforms": "PS4",
       "Developer": "Santa Monica Studio",

@@ -1,5 +1,18 @@
 <script>
   import { data } from "../../../gamedata.js";
+  import { onMount } from "svelte";
+
+  let previousGames = [];
+  let previousGuesses = [];
+
+  onMount(async () => {
+    let guesses = localStorage.getItem("guesses");
+    let games = localStorage.getItem("games");
+    if (guesses) {
+      previousGuesses = [...guesses.split(",")];
+      previousGames = [...games?.split(",")];
+    }
+  });
 
   data.sort((a, b) => {
     //Sorts the data alphabetically by title
@@ -8,13 +21,14 @@
 
   let random = Math.floor(Math.random() * 100); //generates a random number from 0-99
   let answer = data[random];
+
+  console.log(answer.Title); //Testing
+
   let nameHint = answer.Title.charAt(0).toString();
   for (let i = 1; i < answer.Title.length; i++) {
     //Creates a hangman style clue
-    if (answer.Title.charAt(i) != " ") {
-      nameHint += "_";
-    } else {
-      nameHint += " ";
+    {
+      answer.Title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");
     }
   }
   let clues = [
@@ -32,9 +46,6 @@
 
   let correctGuess = false;
 
-  let previousGames = [];
-  let previousGuesses = [];
-
   let changeGuess = () =>
     //sets the value of the players guesses to the value in the input.
     {
@@ -49,10 +60,8 @@
       answer = data[random];
       nameHint = answer.Title.charAt(0).toString();
       for (let i = 1; i < answer.Title.length; i++) {
-        if (answer.Title.charAt(i) != " ") {
-          nameHint += "_";
-        } else {
-          nameHint += " ";
+        {
+          answer.Title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");
         }
       }
       clues = [
@@ -65,7 +74,8 @@
 
       correctGuess = false;
       givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
-      console.log(answer.Title);
+
+      console.log(answer.Title); //Testing
     };
 
   let checkAnswer = () =>
@@ -91,6 +101,9 @@
           previousGames.push(answer.Title); //adds the answer for this game to the array of past answers
           let tempTitles = previousGames;
           previousGames = tempTitles;
+
+          localStorage.setItem("games", previousGames);
+          localStorage.setItem("guesses", previousGuesses);
         }
       }
     };
