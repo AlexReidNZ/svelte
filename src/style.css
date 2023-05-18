@@ -8,7 +8,7 @@
 
 @font-face {
   font-family: Geomatrix;
-  src: url(../src/lib/fonts/GeomatrixLight.woff) format("woff");
+  src: url(../src/lib/fonts/GeomatrixThin.woff2) format("woff2");
 }
 
 body{
