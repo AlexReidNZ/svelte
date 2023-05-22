@@ -48,6 +48,8 @@
   }
   button:hover {
     background-color: var(--secondaryHighlight);
+    transform: scale(1.1);
+    transition-duration: 500ms;
   }
   button:hover a {
     color: white;

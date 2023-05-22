@@ -12,8 +12,12 @@
 
 <section class="container">
   <section class="tabs">
-    <button on:click={suggestorActive} class:activeButton={suggestor == true}>About The Suggestor</button>
-    <button on:click={gameActive} class:activeButton={suggestor == false}>About The Game</button>
+    <button on:click={suggestorActive} class:activeButton={suggestor == true}
+      >About The Suggestor</button
+    >
+    <button on:click={gameActive} class:activeButton={suggestor == false}
+      >About The Game</button
+    >
   </section>
 
   <section class="content">
@@ -91,8 +95,10 @@
   button:hover {
     background-color: var(--secondaryHighlight);
     color: white;
+    transform: scale(1.2);
+    transition-duration: 500ms;
   }
-  .activeButton{
+  .activeButton {
     background-color: var(--secondaryHighlight);
     color: white;
   }
