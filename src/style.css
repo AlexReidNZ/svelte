@@ -7,12 +7,12 @@
 }
 
 @font-face {
-  font-family: Geomatrix;
-  src: url(../src/lib/fonts/GeomatrixThin.woff2) format("woff2");
+  font-family: 'W95FA';
+  src: url(../src/lib/fonts/W95FA.otf) format("opentype");
 }
 
 body{
-    font-family: "Geomatrix";
+    font-family: "W95FA";
     margin: 0;
     padding: 0;
 }
@@ -20,7 +20,6 @@ button{
     border-radius: 100px;
 }
 p{
-    font-family: "Geomatrix";
     margin: 0px;
 }
 .container{
