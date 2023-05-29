@@ -48,10 +48,9 @@
 
   let correctGuess = false;
 
-  let changeGuess = () =>
-    {
-      guess = document.querySelector("select")?.value;
-    };
+  let changeGuess = () => {
+    guess = document.querySelector("input")?.value;
+  };
 
   let reset = () =>
     //resets the game by resetting the random answer, cluse, guesses and count.
@@ -79,32 +78,31 @@
       console.log(answer.Title); //Testing
     };
 
-  let checkAnswer = () =>
-    {
-      if (!correctGuess) {
-        //If the game is not over
-        guesses++;
-        if (guesses < clues.length) {
-          givenClues = [];
-          for (let i = 0; i <= guesses; i++) {
-            givenClues[i] = clues[i];
-          }
-        }
-
-        if (guess === answer.Title) {
-          correctGuess = true; //Stop the player from guessing again
-          givenClues = clues;
-          previousGuesses.push(guesses);
-          previousGuesses = previousGuesses;
-          previousGames.push(answer.Title);
-          previousGames = previousGames;
-
-          //stores previous scores to local storage, so they persist if the page is reloaded
-          localStorage.setItem("games", previousGames);
-          localStorage.setItem("guesses", previousGuesses);
+  let checkAnswer = () => {
+    if (!correctGuess) {
+      //If the game is not over
+      guesses++;
+      if (guesses < clues.length) {
+        givenClues = [];
+        for (let i = 0; i <= guesses; i++) {
+          givenClues[i] = clues[i];
         }
       }
-    };
+
+      if (guess === answer.Title) {
+        correctGuess = true; //Stop the player from guessing again
+        givenClues = clues;
+        previousGuesses.push(guesses);
+        previousGuesses = previousGuesses;
+        previousGames.push(answer.Title);
+        previousGames = previousGames;
+
+        //stores previous scores to local storage, so they persist if the page is reloaded
+        localStorage.setItem("games", previousGames);
+        localStorage.setItem("guesses", previousGuesses);
+      }
+    }
+  };
 </script>
 
 <section class="container">
@@ -116,11 +114,18 @@
   </section>
   <section class="answerSelector">
     <label for="selectAnser">Select Answer:</label>
-    <select name="answer" id="selectAnswer" on:change={changeGuess}>
+    <input
+      type="search"
+      list="gamesList"
+      name="answer"
+      id="selectAnswer"
+      on:change={changeGuess}
+    />
+    <datalist id="gamesList">
       {#each data as game}
         <option value={game.Title}>{game.Title}</option>
       {/each}
-    </select>
+    </datalist>
   </section>
   <section class="buttons">
     <button class="checkButton" on:click={checkAnswer}>
