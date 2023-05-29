@@ -115,7 +115,7 @@
   <section class="answerSelector">
     <label for="selectAnser">Select Answer:</label>
     <input
-      type="search"
+      type="text"
       list="gamesList"
       name="answer"
       id="selectAnswer"
