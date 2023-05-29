@@ -1,8 +1,11 @@
 <script>
+  /*
+    This page dynamically sorts, filters and displays the games from the dataset based on filters selected by the user
+  */
+
   import { data } from "../../../gamedata.js";
 
   data.sort((a, b) => {
-    //Sorts the data alphabetically by title
     return a.Title.localeCompare(b.Title);
   });
 
@@ -37,30 +40,27 @@
     lastYear = document.querySelector("select.lastYearSelect")?.value;
     displayData();
   };
+  //Sorts the data in diffeent ways depending on a user selected sorter
   let sort = () => {
     sorter = document.querySelector("select.sortSelect")?.value;
 
     if (sorter == "Title") {
       data.sort((a, b) => {
-        //Sorts the data alphabetically by title
         return a.Title.localeCompare(b.Title);
       });
     }
     if (sorter == "Genre") {
       data.sort((a, b) => {
-        //Sorts the data alphabetically by genre
         return a.Genre.localeCompare(b.Genre);
       });
     }
     if (sorter == "Developer") {
       data.sort((a, b) => {
-        //Sorts the data alphabetically by developer
         return a.Developer.localeCompare(b.Developer);
       });
     }
     if (sorter == "Release Year") {
       data.sort((a, b) => {
-        //Sorts the data by release year
         return a.ReleaseYear - b.ReleaseYear;
       });
     }
@@ -77,7 +77,6 @@
         data[i].ReleaseYear >= firstYear &&
         data[i].Platforms.includes(platform)
       ) {
-        //if Platform and year match
         if (genre == "Other") {
           //If other is selected, check that each game DOESN'T have any of the listed genres
           let isOther = true;

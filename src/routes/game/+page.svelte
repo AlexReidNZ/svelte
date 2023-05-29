@@ -1,4 +1,7 @@
 <script>
+  /*
+    This page has the 'wordle like' guessing game
+  */
   import { data } from "../../../gamedata.js";
   import { onMount } from "svelte";
 
@@ -15,11 +18,10 @@
   });
 
   data.sort((a, b) => {
-    //Sorts the data alphabetically by title
     return a.Title.localeCompare(b.Title);
   });
 
-  let random = Math.floor(Math.random() * 100); //generates a random number from 0-99
+  let random = Math.floor(Math.random() * 100); //generates a random number to represent a game from the dataset
   let answer = data[random];
 
   console.log(answer.Title); //Testing
@@ -38,7 +40,7 @@
     `Platforms ${answer.Platforms}`,
     nameHint,
   ];
-  let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`]; //The year is the first given clue
+  let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`]; //The year is the first clue given to the player
 
   let guesses = 0;
 
@@ -47,7 +49,6 @@
   let correctGuess = false;
 
   let changeGuess = () =>
-    //sets the value of the players guesses to the value in the input.
     {
       guess = document.querySelector("select")?.value;
     };
@@ -79,13 +80,11 @@
     };
 
   let checkAnswer = () =>
-    //checks if the answer is correct
     {
       if (!correctGuess) {
         //If the game is not over
         guesses++;
         if (guesses < clues.length) {
-          //gives the player the next clue if they don't already have them all
           givenClues = [];
           for (let i = 0; i <= guesses; i++) {
             givenClues[i] = clues[i];
@@ -93,13 +92,14 @@
         }
 
         if (guess === answer.Title) {
-          correctGuess = true; //Stops the player from guessing again
-          givenClues = clues; //shows the player all of the clues
-          previousGuesses.push(guesses); //adds their score for this game to the array of past scores
+          correctGuess = true; //Stop the player from guessing again
+          givenClues = clues;
+          previousGuesses.push(guesses);
           previousGuesses = previousGuesses;
-          previousGames.push(answer.Title); //adds the answer for this game to the array of past answers
+          previousGames.push(answer.Title);
           previousGames = previousGames;
 
+          //stores previous scores to local storage, so they persist if the page is reloaded
           localStorage.setItem("games", previousGames);
           localStorage.setItem("guesses", previousGuesses);
         }

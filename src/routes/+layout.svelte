@@ -2,21 +2,6 @@
   import "../style.css";
   import Header from "$lib/header.svelte";
   import Footer from "$lib/footer.svelte";
-
-  //Fetch for getting "gaming" images from unsplash
-
-  // let imagesArray = [];
-
-  // const BASE_URL = "https://api.unsplash.com/";
-  // fetch(
-  //   `${BASE_URL}/search/photos/?client_id=skDU48Yd4CUD6X2AaBJDlof39G4ykmRrVtvUKKLG2Ks&query=gaming`
-  // )
-  //   .then((res) => res.json())
-  //   .then((data) => {
-  //     data.results.forEach((element) => {
-  //       imagesArray.push(element.urls.small);
-  //     });
-  //   });
 </script>
 
 <Header />
