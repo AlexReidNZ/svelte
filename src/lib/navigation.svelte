@@ -39,10 +39,11 @@
     margin-right: 5px;
     margin-bottom: 5px;
     margin-top: 5px;
+    width: 75px;
   }
   a {
     display: block;
-    padding: 8px;
+    padding: 8px 0px;
     color: black;
     text-decoration: underline var(--secondaryHighlight);
   }

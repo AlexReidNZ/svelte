@@ -258,6 +258,7 @@
   span {
     display: flex;
     padding: 5px 0;
+    height: 50px;
   }
   span p {
     width: 20%;
