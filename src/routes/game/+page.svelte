@@ -53,6 +53,7 @@
   let reset = () =>
     //resets the game by resetting the random answer, cluse, guesses and count.
     {
+      document.querySelector("input").value = "";
       guesses = 0;
       random = Math.floor(Math.random() * 100);
       answer = data[random];
@@ -75,6 +76,8 @@
     };
 
   let checkAnswer = () => {
+    document.querySelector("input").value = "";
+
     if (!correctGuess) {
       //If the game is not over
       guesses++;
