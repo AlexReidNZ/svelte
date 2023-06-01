@@ -173,24 +173,27 @@
     </section>
   </section>
 
-  <details>
-    <!--Displays the currently selected options-->
-    <summary>Current Settings</summary>
-    <ul>
-      {#if platform == ""}
-        <li>Platform: Any</li>
-      {:else}
-        <li>Platform: {platform}</li>
-      {/if}
-      {#if genre == ""}
-        <li>Genre: Any</li>
-      {:else}
-        <li>Genre: {genre}</li>
-      {/if}
-      <li>Year: {firstYear}-{lastYear}</li>
-      <li>Sorted By: {sorter}</li>
-    </ul>
-  </details>
+  <section class="centerSettings">
+    <details>
+      <!--Displays the currently selected options-->
+      <summary>Current Settings</summary>
+      <ul>
+        {#if platform == ""}
+          <li>Platform: Any</li>
+        {:else}
+          <li>Platform: {platform}</li>
+        {/if}
+        {#if genre == ""}
+          <li>Genre: Any</li>
+        {:else}
+          <li>Genre: {genre}</li>
+        {/if}
+        <li>Year: {firstYear}-{lastYear}</li>
+        <li>Sorted By: {sorter}</li>
+      </ul>
+    </details>
+  </section>
+
   <section class="DisplayedList">
     <h1>You Should Play...</h1>
     <span>
@@ -230,10 +233,15 @@
     border-color: var(--highlightText);
     border-radius: 10px;
   }
-  details {
+  .centerSettings, details{
     display: flex;
     justify-content: center;
+  }
+  details {
     margin: 10px;
+  }
+  details summary{
+    align-self: center;
   }
   details ul {
     margin: 0px;
@@ -273,5 +281,6 @@
   h1 {
     color: var(--highlightText);
     text-align: center;
+    margin: 0;
   }
 </style>
