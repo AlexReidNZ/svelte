@@ -147,9 +147,10 @@
     <div class="scores">
       {#each previousGames as game, index}
         <!--Displays the previous scores-->
-        <p>Game: {game}</p>
-        <p>Guesses: {previousGuesses[index]}</p>
-        <br />
+        <div class="eachScore">
+          <p>Game: {game}</p>
+          <p>Guesses: {previousGuesses[index]}</p>
+        </div>
       {/each}
     </div>
   </section>
@@ -206,6 +207,10 @@
   }
   .scores {
     display: flex;
-    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .eachScore{
+    margin: 10px;
   }
 </style>
