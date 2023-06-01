@@ -24,8 +24,6 @@
   let random = Math.floor(Math.random() * 100); //generates a random number to represent a game from the dataset
   let answer = data[random];
 
-  console.log(answer.Title); //Testing
-
   let nameHint = answer.Title.charAt(0).toString();
   for (let i = 1; i < answer.Title.length; i++) {
     //Creates a hangman style clue
@@ -74,8 +72,6 @@
 
       correctGuess = false;
       givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
-
-      console.log(answer.Title); //Testing
     };
 
   let checkAnswer = () => {

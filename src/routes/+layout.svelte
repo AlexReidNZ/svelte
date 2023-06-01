@@ -30,16 +30,4 @@
     padding-top: 10vh;
     box-shadow: 10px;
   }
-  slot {
-    animation-name: slide-in;
-    animation-duration: 3s;
-  }
-  @keyframes slide-in {
-    from {
-      transform: translateY(-200%);
-    }
-    to {
-      transfrom: translateY(0%);
-    }
-  }
 </style>
