@@ -32,7 +32,7 @@
   }
   slot {
     animation-name: slide-in;
-    animation-duration: 1s;
+    animation-duration: 3s;
   }
   @keyframes slide-in {
     from {
