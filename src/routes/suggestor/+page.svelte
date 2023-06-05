@@ -89,7 +89,6 @@
           }
         }
         if (data[i].Genre.includes(genre)) {
-          //If a genre is selected, add all games of that genre
           games = [...games, data[i]];
         }
       }
@@ -229,8 +228,7 @@
     border-color: var(--highlightText);
     border-radius: 10px;
   }
-  .centerSettings,
-  details {
+  .centerSettings, details {
     display: flex;
     justify-content: center;
   }
@@ -263,7 +261,8 @@
   span {
     display: flex;
     padding: 5px 0;
-    height: 50px;
+    min-height: 50px;
+    min-width: 850px;
   }
   span p {
     width: 20%;

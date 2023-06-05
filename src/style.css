@@ -24,7 +24,6 @@ p{
     margin: 0px;
 }
 .container{
-  max-width: 50vw;
     animation-name: slide-in;
     animation-duration: 1s;
   }
