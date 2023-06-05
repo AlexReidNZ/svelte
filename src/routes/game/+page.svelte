@@ -16,7 +16,6 @@
       previousGames = [...games?.split(",")];
     }
   });
-
   data.sort((a, b) => {
     return a.Title.localeCompare(b.Title);
   });
@@ -32,11 +31,10 @@
   }
 
   let nameHint = answer.Title.charAt(0).toString();
-  for (let i = 1; i < answer.Title.length; i++) {
+  for (let i = 1; i < answer.Title.length; i++)
+  {
     //Creates a hangman style clue
-    {
-      answer.Title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");
-    }
+    {answer.Title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");}
   }
   let clues = [
     `Release Year: ${answer.ReleaseYear.toString()}`,
@@ -45,7 +43,7 @@
     `Platforms ${answer.Platforms}`,
     nameHint,
   ];
-  
+
   let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`]; //The year is the first clue given to the player
   let guesses = 0;
   let guess = data[0].Title;
@@ -71,11 +69,11 @@
       }
 
       nameHint = answer.Title.charAt(0).toString();
-      for (let i = 1; i < answer.Title.length; i++) {
-        {
-          answer.Title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");
-        }
+      for (let i = 1; i < answer.Title.length; i++)
+      { 
+        {answer.Title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");} 
       }
+
       clues = [
         `Release Year: ${answer.ReleaseYear.toString()}`,
         `Genre: ${answer.Genre}`,
@@ -112,6 +110,12 @@
       }
     }
   };
+
+let clearScores = () => {
+  previousGames = [];
+  previousGuesses = [];
+  localStorage.clear();
+}
 </script>
 
 <section class="container">
@@ -156,8 +160,10 @@
         </div>
       {/each}
     </div>
+    <button class="clearButton" on:click={clearScores}>Clear all scores</button>
   </section>
 </section>
+
 
 <style>
   p {
@@ -207,6 +213,15 @@
   .checkButton:hover {
     background-color: rgb(26, 204, 26);
     border-color: rgb(26, 204, 26);
+  }
+  .clearButton {
+    font-size: 12px;
+    background-color: rgb(204, 55, 55);
+    width: fit-content;
+  }
+  .clearButton:hover {
+    background-color: rgb(255, 0, 0);
+    border-color: rgb(255, 0, 0);
   }
   .scores {
     max-width: 900px;

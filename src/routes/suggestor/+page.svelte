@@ -39,8 +39,7 @@
     lastYear = document.querySelector("select.lastYearSelect")?.value;
     displayData();
   };
-  //Sorts the data in diffeent ways depending on a user selected sorter
-  let sort = () => {
+  let sort = () => { //Sorts the data in diffeent ways depending on a user selected sorter
     sorter = document.querySelector("select.sortSelect")?.value;
     let ascDesc = document.querySelector("select.ascDesc")?.value;
 
@@ -104,7 +103,6 @@
 
 <section class="container">
   <section class="options">
-    <!--Section that contains inputs for options-->
     <section class="filterSeperator">
       <label for="platformSelect">Platform:</label>
       <select
@@ -180,7 +178,7 @@
 
   <section class="centerSettings">
     <details>
-      <!--Displays the currently selected options-->
+      <!--Displays the currently selected filters-->
       <summary>Current Settings</summary>
       <ul>
         {#if platform == ""}

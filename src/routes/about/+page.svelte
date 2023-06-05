@@ -16,12 +16,8 @@
 
 <section class="container">
   <section class="tabs">
-    <button on:click={suggestorActive} class:activeButton={suggestor == true}
-      >About The Suggestor</button
-    >
-    <button on:click={gameActive} class:activeButton={suggestor == false}
-      >About The Game</button
-    >
+    <button on:click={suggestorActive} class:activeButton={suggestor == true}>About The Suggestor</button>
+    <button on:click={gameActive} class:activeButton={suggestor == false}>About The Game</button>
   </section>
 
   <section class="content">
