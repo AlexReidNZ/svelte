@@ -25,7 +25,6 @@
   while ( previousGames.includes(answer.Title) && previousGames.length < 100)
   {
     //Rerolls the answer if it is one that has already been played
-    console.log(answer.Title);
     random = Math.floor(Math.random() * 100);
     answer = data[random];
   }
@@ -63,7 +62,6 @@
       while (previousGames.includes(answer.Title) && previousGames.length < 100)
       {
         //Rerolls the answer if it is one that has already been played
-        console.log(answer.Title);
         random = Math.floor(Math.random() * 100);
         answer = data[random];
       }
