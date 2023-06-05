@@ -23,6 +23,13 @@
 
   let random = Math.floor(Math.random() * 100); //generates a random number to represent a game from the dataset
   let answer = data[random];
+  while ( previousGames.includes(answer.Title) && previousGames.length < 100)
+  {
+    //Rerolls the answer if it is one that has already been played
+    console.log(answer.Title);
+    random = Math.floor(Math.random() * 100);
+    answer = data[random];
+  }
 
   let nameHint = answer.Title.charAt(0).toString();
   for (let i = 1; i < answer.Title.length; i++) {
@@ -38,18 +45,15 @@
     `Platforms ${answer.Platforms}`,
     nameHint,
   ];
+  
   let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`]; //The year is the first clue given to the player
-
   let guesses = 0;
-
   let guess = data[0].Title;
-
   let correctGuess = false;
 
   let changeGuess = () => {
     guess = document.querySelector("input")?.value;
   };
-
   let reset = () =>
     //resets the game by resetting the random answer, cluse, guesses and count.
     {
@@ -57,6 +61,15 @@
       guesses = 0;
       random = Math.floor(Math.random() * 100);
       answer = data[random];
+
+      while (previousGames.includes(answer.Title) && previousGames.length < 100)
+      {
+        //Rerolls the answer if it is one that has already been played
+        console.log(answer.Title);
+        random = Math.floor(Math.random() * 100);
+        answer = data[random];
+      }
+
       nameHint = answer.Title.charAt(0).toString();
       for (let i = 1; i < answer.Title.length; i++) {
         {
@@ -74,7 +87,6 @@
       correctGuess = false;
       givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
     };
-
   let checkAnswer = () => {
     document.querySelector("input").value = "";
 
@@ -91,10 +103,8 @@
       if (guess === answer.Title) {
         correctGuess = true; //Stops the player from guessing again
         givenClues = clues;
-        previousGuesses.push(guesses);
-        previousGuesses = previousGuesses;
-        previousGames.push(answer.Title);
-        previousGames = previousGames;
+        previousGuesses = [...previousGuesses, guesses];
+        previousGames = [...previousGames, answer.Title];
 
         //stores previous scores to local storage, so they persist if the page is reloaded
         localStorage.setItem("games", previousGames);
@@ -199,11 +209,13 @@
     border-color: rgb(26, 204, 26);
   }
   .scores {
+    max-width: 900px;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
   }
   .eachScore {
+    min-width: 250px;
     margin: 10px;
   }
 </style>
