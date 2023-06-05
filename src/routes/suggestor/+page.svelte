@@ -42,6 +42,7 @@
   //Sorts the data in diffeent ways depending on a user selected sorter
   let sort = () => {
     sorter = document.querySelector("select.sortSelect")?.value;
+    let ascDesc = document.querySelector("select.ascDesc")?.value;
 
     if (sorter == "Title") {
       data.sort((a, b) => {
@@ -63,6 +64,11 @@
         return a.ReleaseYear - b.ReleaseYear;
       });
     }
+
+    if (ascDesc == "descending") {
+      data.reverse();
+    }
+
     games = data;
     displayData();
   };
@@ -165,6 +171,10 @@
           <option value={option}>{option}</option>
         {/each}
       </select>
+      <select name="ascDesc" id="ascDesc" class="ascDesc" on:change={sort}>
+        <option value="ascending">Ascending</option>
+        <option value="descending">descending</option>
+      </select>
     </section>
   </section>
 
@@ -190,7 +200,7 @@
   </section>
 
   <section class="DisplayedList">
-    <h1>You Should Play...</h1>
+    <h2>You Should Play...</h2>
     <span>
       <h2>Title</h2>
       <h2>Genre</h2>
@@ -228,7 +238,8 @@
     border-color: var(--highlightText);
     border-radius: 10px;
   }
-  .centerSettings, details {
+  .centerSettings,
+  details {
     display: flex;
     justify-content: center;
   }
@@ -268,15 +279,13 @@
     width: 20%;
     text-align: center;
   }
-  span h2 {
+  h2 {
     color: var(--highlightText);
-    width: 20%;
     text-align: center;
-    font-size: 20px;
+    margin: 5px;
   }
-  h1 {
-    color: var(--highlightText);
-    text-align: center;
-    margin: 0;
+  span h2 {
+    width: 20%;
+    font-size: 20px;
   }
 </style>
