@@ -1,4 +1,8 @@
+
 <script>
+/*
+  About page that describes the game and suggestor
+*/
   let suggestor = true;
 
   let suggestorActive = () => {

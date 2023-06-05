@@ -4,7 +4,6 @@
   */
 
   import { data } from "../../../gamedata.js";
-
   data.sort((a, b) => {
     return a.Title.localeCompare(b.Title);
   });
@@ -14,7 +13,7 @@
   let firstYear = 2000;
   let lastYear = 2020;
   let sorter = "Title";
-  let game = data;
+  let games = data;
 
   const genres = ["Platformer", "Puzzle", "RPG", "Shooter", "Adventure"];
   const platforms = ["PC", "Nintendo", "PS", "Xbox", "iOS"];
@@ -64,11 +63,11 @@
         return a.ReleaseYear - b.ReleaseYear;
       });
     }
-    game = data;
+    games = data;
     displayData();
   };
   let displayData = () => {
-    game = [];
+    games = [];
     let count = 0;
 
     for (let i = 0; i < data.length; i++) {
@@ -87,13 +86,13 @@
           }
           if (isOther) {
             //Add all 'other' games
-            game[count] = data[i];
+            games[count] = data[i];
             count++;
           }
         }
         if (data[i].Genre.includes(genre)) {
           //If a genre is selected, add all games of that genre
-          game[count] = data[i];
+          games[count] = data[i];
           count++;
         }
       }
@@ -203,7 +202,7 @@
       <h2>Developer</h2>
       <h2>Release Year</h2>
     </span>
-    {#each game as g}
+    {#each games as g}
       <span
         ><p>{g.Title}</p>
         <p>{g.Genre}</p>
@@ -233,14 +232,15 @@
     border-color: var(--highlightText);
     border-radius: 10px;
   }
-  .centerSettings, details{
+  .centerSettings,
+  details {
     display: flex;
     justify-content: center;
   }
   details {
     margin: 10px;
   }
-  details summary{
+  details summary {
     align-self: center;
   }
   details ul {

@@ -89,7 +89,7 @@
       }
 
       if (guess === answer.Title) {
-        correctGuess = true; //Stop the player from guessing again
+        correctGuess = true; //Stops the player from guessing again
         givenClues = clues;
         previousGuesses.push(guesses);
         previousGuesses = previousGuesses;
@@ -127,14 +127,8 @@
     </datalist>
   </section>
   <section class="buttons">
-    <button class="checkButton" on:click={checkAnswer}>
-      <!--checks if the answer is correct-->
-      Check
-    </button>
-    <button class="resetButton" on:click={reset}>
-      <!--lets the player reset the game-->
-      Reset
-    </button>
+    <button class="checkButton" on:click={checkAnswer}> Check </button>
+    <button class="resetButton" on:click={reset}> Reset </button>
   </section>
   <p>
     {correctGuess === true
@@ -146,7 +140,6 @@
     <h2>Previous Scores:</h2>
     <div class="scores">
       {#each previousGames as game, index}
-        <!--Displays the previous scores-->
         <div class="eachScore">
           <p>Game: {game}</p>
           <p>Guesses: {previousGuesses[index]}</p>
@@ -210,7 +203,7 @@
     flex-wrap: wrap;
     justify-content: center;
   }
-  .eachScore{
+  .eachScore {
     margin: 10px;
   }
 </style>
