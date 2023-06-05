@@ -105,12 +105,7 @@
   <section class="options">
     <section class="filterSeperator">
       <label for="platformSelect">Platform:</label>
-      <select
-        name="platform"
-        id="platformSelect"
-        class="platformSelect"
-        on:change={changePlatform}
-      >
+      <select name="platform" id="platformSelect" class="platformSelect" on:change={changePlatform}>
         <option value="">Any</option>
         {#each platforms as platform}
           <option value={platform}>{platform}</option>
@@ -119,12 +114,7 @@
     </section>
     <section class="filterSeperator">
       <label for="genreSelect">Genre:</label>
-      <select
-        name="genre"
-        id="genreSelect"
-        class="genreSelect"
-        on:change={changeGenre}
-      >
+      <select name="genre" id="genreSelect" class="genreSelect" on:change={changeGenre}>
         <option value="">Any</option>
         {#each genres as genre}
           <option value={genre}>{genre}</option>
@@ -134,12 +124,7 @@
     </section>
     <section class="filterSeperator">
       <label for="firstYearSelect">Year:</label>
-      <select
-        name="firstYear"
-        id="firstYearSelect"
-        class="firstYearSelect"
-        on:change={changeFirstYear}
-      >
+      <select name="firstYear" id="firstYearSelect" class="firstYearSelect" on:change={changeFirstYear}>
         {#each years as year}
           {#if year <= lastYear}
             <option value={year}>{year}</option>
@@ -147,12 +132,7 @@
         {/each}
       </select>
       <label for="lastYearSelect">-</label>
-      <select
-        name="lastYear"
-        id="lastYearSelect"
-        class="lastYearSelect"
-        on:change={changeLastYear}
-      >
+      <select name="lastYear" id="lastYearSelect" class="lastYearSelect" on:change={changeLastYear}>
         {#each years as year}
           {#if year >= firstYear}
             <option value={year}>{year}</option>
