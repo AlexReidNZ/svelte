@@ -68,7 +68,6 @@
   };
   let displayData = () => {
     games = [];
-    let count = 0;
 
     for (let i = 0; i < data.length; i++) {
       if (
@@ -86,14 +85,12 @@
           }
           if (isOther) {
             //Add all 'other' games
-            games[count] = data[i];
-            count++;
+            games = [...games, data[i]];
           }
         }
         if (data[i].Genre.includes(genre)) {
           //If a genre is selected, add all games of that genre
-          games[count] = data[i];
-          count++;
+          games = [...games, data[i]];
         }
       }
     }
