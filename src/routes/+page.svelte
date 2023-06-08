@@ -1,5 +1,6 @@
 <script>
   import NavCard from "../lib/navCard.svelte";
+  import { onMount } from "svelte";
 
   let pages = ["about", "suggestor", "game"];
 </script>

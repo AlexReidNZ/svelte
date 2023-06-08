@@ -2,11 +2,19 @@
   /*
     This page has the 'wordle like' guessing game
   */
-  import { data } from "../../../gamedata.js";
   import { onMount } from "svelte";
 
   let previousGames = [];
   let previousGuesses = [];
+  let games = [];
+  let givenClues = [];
+  let guesses = 0;
+  let guess;
+  let correctGuess;
+  let clues = [];
+  let answer;
+  let random = 0;
+  let nameHint;
 
   onMount(async () => {
     let guesses = localStorage.getItem("guesses");
@@ -16,76 +24,96 @@
       previousGames = [...games?.split(",")];
     }
   });
-  data.sort((a, b) => {
-    return a.Title.localeCompare(b.Title);
-  });
 
-  let random = Math.floor(Math.random() * 100); //generates a random number to represent a game from the dataset
-  let answer = data[random];
-  while ( previousGames.includes(answer.Title) && previousGames.length < 100)
-  {
-    //Rerolls the answer if it is one that has already been played
-    random = Math.floor(Math.random() * 100);
-    answer = data[random];
-  }
-
-  let nameHint = answer.Title.charAt(0).toString();
-  for (let i = 1; i < answer.Title.length; i++)
-  {
-    //Creates a hangman style clue
-    {answer.Title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");}
-  }
-  let clues = [
-    `Release Year: ${answer.ReleaseYear.toString()}`,
-    `Genre: ${answer.Genre}`,
-    `Developer: ${answer.Developer}`,
-    `Platforms ${answer.Platforms}`,
-    nameHint,
-  ];
-
-  let givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`]; //The year is the first clue given to the player
-  let guesses = 0;
-  let guess = data[0].Title;
-  let correctGuess = false;
-
-  let changeGuess = () => {
-    guess = document.querySelector("input")?.value;
+  const url = "https://free-to-play-games-database.p.rapidapi.com/api/games";
+  const options = {
+    method: "GET",
+    headers: {
+      "X-RapidAPI-Key": "bc956fa522msh60bbb4a61da609ep189239jsn473811898b52",
+      "X-RapidAPI-Host": "free-to-play-games-database.p.rapidapi.com",
+    },
   };
-  let reset = () =>
-    //resets the game by resetting the random answer, cluse, guesses and count.
-    {
-      document.querySelector("input").value = "";
-      guesses = 0;
-      random = Math.floor(Math.random() * 100);
-      answer = data[random];
 
-      while (previousGames.includes(answer.Title) && previousGames.length < 100)
-      {
+  fetch(url, options)
+    .then((res) => res.json())
+    .then((data) => {
+      games = data;
+      games.sort((a, b) => {
+        return a.title.localeCompare(b.title);
+      });
+
+      random = Math.floor(Math.random() * games.length); //generates a random number to represent a game from the dataset
+      answer = games[random];
+      console.log(answer.title);
+
+      while (
+        previousGames.includes(answer.title) &&
+        previousGames.length < games.length
+      ) {
         //Rerolls the answer if it is one that has already been played
-        random = Math.floor(Math.random() * 100);
-        answer = data[random];
+        random = Math.floor(Math.random() * games.length);
+        answer = games[random];
+        console.log(answer.title);
       }
-
-      nameHint = answer.Title.charAt(0).toString();
-      for (let i = 1; i < answer.Title.length; i++)
-      { 
-        {answer.Title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");} 
+      nameHint = answer.title.charAt(0).toString();
+      for (let i = 1; i < answer.title.length; i++) {
+        //Creates a hangman style clue
+        {
+          answer.title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");
+        }
       }
 
       clues = [
-        `Release Year: ${answer.ReleaseYear.toString()}`,
-        `Genre: ${answer.Genre}`,
-        `Developer: ${answer.Developer}`,
-        `Platforms ${answer.Platforms}`,
+        `Description: ${answer.short_description}`,
+        `Release Date: ${answer.release_date}`,
+        `Genre: ${answer.genre}`,
+        `Developer: ${answer.developer}`,
+        nameHint,
+      ];
+
+      givenClues = [`Description: ${answer.short_description}`]; //The year is the first clue given to the player
+      guesses = 0;
+      correctGuess = false;
+    });
+
+  let reset = () =>
+    //resets the game by resetting the random answer, cluse, guesses and count.
+    {
+      guess = "";
+      guesses = 0;
+      random = Math.floor(Math.random() * 100);
+      answer = games[random];
+      console.log(answer.title);
+
+      while (
+        previousGames.includes(answer.title) &&
+        previousGames.length < 100
+      ) {
+        //Rerolls the answer if it is one that has already been played
+        random = Math.floor(Math.random() * 100);
+        answer = games[random];
+        console.log(answer.title);
+      }
+
+      nameHint = answer.title.charAt(0).toString();
+      for (let i = 1; i < answer.title.length; i++) {
+        {
+          answer.title.charAt(i) != " " ? (nameHint += "_") : (nameHint += " ");
+        }
+      }
+
+      clues = [
+        `Description: ${answer.short_description}`,
+        `Release Date: ${answer.release_date}`,
+        `Genre: ${answer.genre}`,
+        `Developer: ${answer.developer}`,
         nameHint,
       ];
 
       correctGuess = false;
-      givenClues = [`Release Year: ${answer.ReleaseYear.toString()}`];
+      givenClues = [`Description: ${answer.short_description}`];
     };
   let checkAnswer = () => {
-    document.querySelector("input").value = "";
-
     if (!correctGuess) {
       //If the game is not over
       guesses++;
@@ -96,24 +124,29 @@
         }
       }
 
-      if (guess === answer.Title) {
+      if (guess === answer.title) {
         correctGuess = true; //Stops the player from guessing again
         givenClues = clues;
         previousGuesses = [...previousGuesses, guesses];
-        previousGames = [...previousGames, answer.Title];
+        previousGames = [...previousGames, answer.title];
 
         //stores previous scores to local storage, so they persist if the page is reloaded
         localStorage.setItem("games", previousGames);
         localStorage.setItem("guesses", previousGuesses);
       }
     }
+    guess = "";
   };
 
-let clearScores = () => {
-  previousGames = [];
-  previousGuesses = [];
-  localStorage.clear();
-}
+  let clearScores = () => {
+    let clear = confirm("Are you sure you would like to clear your scores?");
+
+    if (clear) {
+      previousGames = [];
+      previousGuesses = [];
+      localStorage.clear();
+    }
+  };
 </script>
 
 <section class="container">
@@ -130,11 +163,11 @@ let clearScores = () => {
       list="gamesList"
       name="answer"
       id="selectAnswer"
-      on:change={changeGuess}
+      bind:value={guess}
     />
     <datalist id="gamesList">
-      {#each data as game}
-        <option value={game.Title}>{game.Title}</option>
+      {#each games as game}
+        <option value={game.title}>{game.title}</option>
       {/each}
     </datalist>
   </section>
@@ -161,7 +194,6 @@ let clearScores = () => {
     <button class="clearButton" on:click={clearScores}>Clear all scores</button>
   </section>
 </section>
-
 
 <style>
   p {

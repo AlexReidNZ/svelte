@@ -1,5 +1,5 @@
 <div>
-<footer>Background image sourced from: <a href="https://unsplash.com/photos/JN3HCJvZEFA">https://unsplash.com/photos/JN3HCJvZEFA</a></footer>
+<footer>Background image: <a href="https://unsplash.com/photos/JN3HCJvZEFA">https://unsplash.com/photos/JN3HCJvZEFA</a></footer>
 </div>
 <style>
   div{

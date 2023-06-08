@@ -38,9 +38,9 @@
         Gamedle is a guessing game, similar to games like wordle, but instead of
         guessing a word, you're guessing a video game! <br /><br />Each time you
         guess incorrectly, you will recieve another clue until you can guess
-        correctly! <br /><br />once you've won, simply press the reset button to
+        correctly!<br /><br />Once you've won, simply press the reset button to
         start a new game! all of your scores will be tracked underneath the game
-        area.
+        area.<br /><br />The data used in Gamedle is a list of free to play games from FreeToGame.com.
       </p>
       <a href="game">Click here to play!</a>
     </div>
