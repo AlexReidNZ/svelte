@@ -93,7 +93,7 @@
             games = [...games, data[i]];
           }
         }
-        if (data[i].Genre.includes(genre)) {
+        else if (data[i].Genre.includes(genre)) {
           games = [...games, data[i]];
         }
       }
@@ -199,17 +199,18 @@
 </section>
 
 <style>
+  label, select, details ul, .filterSeperator {
+    width: fit-content;
+  }
   .options {
     padding-top: 10px;
     display: flex;
     justify-content: space-evenly;
   }
   label {
-    width: fit-content;
     padding-right: 5px;
   }
   select {
-    width: fit-content;
     height: 25px;
     background-color: var(--darkColour);
     color: var(--bodyText);
@@ -235,7 +236,6 @@
     border: 1px;
     border-color: var(--highlightText);
     border-style: solid;
-    width: fit-content;
     list-style-type: none;
   }
   details ul li {
@@ -243,7 +243,6 @@
     display: inline;
   }
   .filterSeperator {
-    width: fit-content;
     height: fit-content;
   }
   span {

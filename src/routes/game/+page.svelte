@@ -16,6 +16,7 @@
   let random = 0;
   let nameHint;
 
+  //Load the previous scores from local storage
   onMount(async () => {
     let guesses = localStorage.getItem("guesses");
     let games = localStorage.getItem("games");
@@ -71,7 +72,7 @@
         `Description: ${answer.short_description}`,
       ];
 
-      givenClues = [`Release Date: ${answer.release_date}`,]; //The year is the first clue given to the player
+      givenClues = [`Release Date: ${answer.release_date}`]; //The release date is the first clue given to the player
       guesses = 0;
       correctGuess = false;
     });
@@ -196,7 +197,7 @@
 </section>
 
 <style>
-  p {
+  p, .answerSelector, button, .buttons, h2, .scores {
     display: flex;
     justify-content: center;
   }
@@ -208,25 +209,13 @@
     justify-content: center;
     height: 9lh;
   }
-  .answerSelector {
-    display: flex;
-    justify-content: center;
-  }
   label {
     padding-right: 10px;
   }
   h2 {
-    display: flex;
-    justify-content: center;
     color: var(--highlightText);
   }
-  .buttons {
-    display: flex;
-    justify-content: center;
-  }
   button {
-    display: flex;
-    justify-content: center;
     margin: 10px;
     width: 80px;
   }
@@ -255,9 +244,7 @@
   }
   .scores {
     max-width: 900px;
-    display: flex;
     flex-wrap: wrap;
-    justify-content: center;
   }
   .eachScore {
     min-width: 250px;

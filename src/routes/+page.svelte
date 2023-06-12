@@ -1,6 +1,5 @@
 <script>
   import NavCard from "../lib/navCard.svelte";
-  import { onMount } from "svelte";
 
   let pages = ["about", "suggestor", "game"];
 </script>
@@ -25,12 +24,11 @@
     display: flex;
     flex-direction: column;
   }
-  p {
+  p, h1 {
     align-self: center;
   }
   h1 {
     color: var(--highlightText);
-    align-self: center;
     margin: 0;
   }
   .cards {

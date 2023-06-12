@@ -5,16 +5,15 @@
 </script>
 
 <Header />
-<main>
+<section>
   <div>
-    <slot />
-    <!-- page specific content -->
+    <slot /> <!-- page specific content -->
   </div>
-</main>
+</section>
 <Footer />
 
 <style>
-  main {
+  section {
     background-color: var(--lightColour);
     background-repeat: no-repeat;
     background-image: url("../images/Background.jpg");

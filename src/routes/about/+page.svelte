@@ -59,15 +59,11 @@
     flex-direction: column;
     justify-content: center;
   }
-  .content div {
-    align-self: center;
-  }
   .content div p {
     max-width: 30em;
-    align-self: center;
     padding-bottom: 1em;
   }
-  .content div a {
+  .content div, a, section, .content div p {
     align-self: center;
   }
   h2 {
@@ -80,9 +76,6 @@
     width: fit-content;
     height: fit-content;
     margin: 0 auto;
-  }
-  section {
-    align-self: center;
   }
   button {
     background-color: var(--highlightText);

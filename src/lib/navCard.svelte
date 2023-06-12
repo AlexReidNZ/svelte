@@ -18,12 +18,7 @@
         transform: scale(1.2);
         transition-duration: 500ms;
     }
-    a {
-        color: var(--highlightText);
-        text-decoration: underline;
-        text-decoration-color: var(--highlightText);
-    }
-    a:visited {
+    a, a:visited {
         color: var(--highlightText);
         text-decoration: underline;
         text-decoration-color: var(--highlightText);
