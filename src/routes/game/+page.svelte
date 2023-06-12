@@ -44,7 +44,6 @@
 
       random = Math.floor(Math.random() * games.length); //generates a random number to represent a game from the dataset
       answer = games[random];
-      console.log(answer.title);
 
       while (
         previousGames.includes(answer.title) &&
@@ -53,7 +52,6 @@
         //Rerolls the answer if it is one that has already been played
         random = Math.floor(Math.random() * games.length);
         answer = games[random];
-        console.log(answer.title);
       }
       nameHint = answer.title.charAt(0).toString();
       for (let i = 1; i < answer.title.length; i++) {
@@ -63,15 +61,17 @@
         }
       }
 
+      answer.short_description = answer.short_description.replace(answer.title, nameHint); //Takes the games title out of its description
+
       clues = [
-        `Description: ${answer.short_description}`,
         `Release Date: ${answer.release_date}`,
         `Genre: ${answer.genre}`,
         `Developer: ${answer.developer}`,
         nameHint,
+        `Description: ${answer.short_description}`,
       ];
 
-      givenClues = [`Description: ${answer.short_description}`]; //The year is the first clue given to the player
+      givenClues = [`Release Date: ${answer.release_date}`,]; //The year is the first clue given to the player
       guesses = 0;
       correctGuess = false;
     });
@@ -83,7 +83,6 @@
       guesses = 0;
       random = Math.floor(Math.random() * 100);
       answer = games[random];
-      console.log(answer.title);
 
       while (
         previousGames.includes(answer.title) &&
@@ -92,7 +91,6 @@
         //Rerolls the answer if it is one that has already been played
         random = Math.floor(Math.random() * 100);
         answer = games[random];
-        console.log(answer.title);
       }
 
       nameHint = answer.title.charAt(0).toString();
@@ -102,16 +100,18 @@
         }
       }
 
+      answer.short_description = answer.short_description.replace(answer.title, nameHint);
+
       clues = [
-        `Description: ${answer.short_description}`,
         `Release Date: ${answer.release_date}`,
         `Genre: ${answer.genre}`,
         `Developer: ${answer.developer}`,
         nameHint,
+        `Description: ${answer.short_description}`,
       ];
 
       correctGuess = false;
-      givenClues = [`Description: ${answer.short_description}`];
+      givenClues = [`Release Date: ${answer.release_date}`];
     };
   let checkAnswer = () => {
     if (!correctGuess) {

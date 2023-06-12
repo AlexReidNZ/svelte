@@ -216,8 +216,7 @@
     border-color: var(--highlightText);
     border-radius: 10px;
   }
-  .centerSettings,
-  details {
+  .centerSettings, details {
     display: flex;
     justify-content: center;
   }
