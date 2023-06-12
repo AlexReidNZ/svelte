@@ -29,7 +29,7 @@ p{
   }
   @keyframes slide-in{
     from{
-      transform: translateY(-200%);
+      transform: translateY(300%);
     }
     to{
       transfrom: translateY(0%);
