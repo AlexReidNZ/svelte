@@ -65,14 +65,14 @@
       answer.short_description = answer.short_description.replace(answer.title, nameHint); //Takes the games title out of its description
 
       clues = [
-        `Release Date: ${answer.release_date}`,
         `Genre: ${answer.genre}`,
         `Developer: ${answer.developer}`,
+        `Release Date: ${answer.release_date}`,
         nameHint,
         `Description: ${answer.short_description}`,
       ];
 
-      givenClues = [`Release Date: ${answer.release_date}`]; //The release date is the first clue given to the player
+      givenClues = [`Genre: ${answer.genre}`]; //The release date is the first clue given to the player
       guesses = 0;
       correctGuess = false;
     });
@@ -104,15 +104,15 @@
       answer.short_description = answer.short_description.replace(answer.title, nameHint);
 
       clues = [
-        `Release Date: ${answer.release_date}`,
         `Genre: ${answer.genre}`,
         `Developer: ${answer.developer}`,
+        `Release Date: ${answer.release_date}`,
         nameHint,
         `Description: ${answer.short_description}`,
       ];
 
       correctGuess = false;
-      givenClues = [`Release Date: ${answer.release_date}`];
+      givenClues = [`Genre: ${answer.genre}`];
     };
   let checkAnswer = () => {
     if (!correctGuess) {
