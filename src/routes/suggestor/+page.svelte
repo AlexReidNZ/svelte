@@ -12,9 +12,9 @@
   let genre = "";
   let firstYear = 2000;
   let lastYear = 2020;
-  let sorter = "Title";
-  let games = data;
+  let sorter;
   let ascDesc;
+  let games = data;
 
   const genres = ["Platformer", "Puzzle", "RPG", "Shooter", "Adventure"];
   const platforms = ["PC", "Nintendo", "PS", "Xbox", "iOS"];
