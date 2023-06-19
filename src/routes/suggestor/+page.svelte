@@ -14,6 +14,7 @@
   let lastYear = 2020;
   let sorter = "Title";
   let games = data;
+  let ascDesc;
 
   const genres = ["Platformer", "Puzzle", "RPG", "Shooter", "Adventure"];
   const platforms = ["PC", "Nintendo", "PS", "Xbox", "iOS"];
@@ -23,26 +24,8 @@
   ];
   const sortOptions = ["Title", "Genre", "Developer", "Release Year"];
 
-  let changePlatform = () => {
-    platform = document.querySelector("select.platformSelect")?.value;
-    displayData();
-  };
-  let changeGenre = () => {
-    genre = document.querySelector("select.genreSelect")?.value;
-    displayData();
-  };
-  let changeFirstYear = () => {
-    firstYear = document.querySelector("select.firstYearSelect")?.value;
-    displayData();
-  };
-  let changeLastYear = () => {
-    lastYear = document.querySelector("select.lastYearSelect")?.value;
-    displayData();
-  };
+ 
   let sort = () => { //Sorts the data in diffeent ways depending on a user selected sorter
-    sorter = document.querySelector("select.sortSelect")?.value;
-    let ascDesc = document.querySelector("select.ascDesc")?.value;
-
     if (sorter == "Title") {
       data.sort((a, b) => {
         return a.Title.localeCompare(b.Title);
@@ -105,7 +88,7 @@
   <section class="options">
     <section class="filterSeperator">
       <label for="platformSelect">Platform:</label>
-      <select name="platform" id="platformSelect" class="platformSelect" on:change={changePlatform}>
+      <select name="platform" id="platformSelect" class="platformSelect" bind:value={platform} on:change={displayData}>
         <option value="">Any</option>
         {#each platforms as platform}
           <option value={platform}>{platform}</option>
@@ -114,8 +97,8 @@
     </section>
     <section class="filterSeperator">
       <label for="genreSelect">Genre:</label>
-      <select name="genre" id="genreSelect" class="genreSelect" on:change={changeGenre}>
-        <option value="">Any</option>
+      <select name="genre" id="genreSelect" class="genreSelect" bind:value={genre} on:change={displayData}>
+        <option value="" selected>Any</option>
         {#each genres as genre}
           <option value={genre}>{genre}</option>
         {/each}
@@ -124,7 +107,7 @@
     </section>
     <section class="filterSeperator">
       <label for="firstYearSelect">Year:</label>
-      <select name="firstYear" id="firstYearSelect" class="firstYearSelect" on:change={changeFirstYear}>
+      <select name="firstYear" id="firstYearSelect" class="firstYearSelect" bind:value={firstYear} on:change={displayData}>
         {#each years as year}
           {#if year <= lastYear}
             <option value={year}>{year}</option>
@@ -132,7 +115,7 @@
         {/each}
       </select>
       <label for="lastYearSelect">-</label>
-      <select name="lastYear" id="lastYearSelect" class="lastYearSelect" on:change={changeLastYear}>
+      <select name="lastYear" id="lastYearSelect" class="lastYearSelect" bind:value={lastYear} on:change={displayData}>
         {#each years as year}
           {#if year >= firstYear}
             <option value={year}>{year}</option>
@@ -144,12 +127,12 @@
     </section>
     <section class="filterSeperator">
       <label for="sortSelect">Sort by:</label>
-      <select name="sort" id="sortSelect" class="sortSelect" on:change={sort}>
+      <select name="sort" id="sortSelect" class="sortSelect" bind:value={sorter} on:change={sort}>
         {#each sortOptions as option}
           <option value={option}>{option}</option>
         {/each}
       </select>
-      <select name="ascDesc" id="ascDesc" class="ascDesc" on:change={sort}>
+      <select name="ascDesc" id="ascDesc" class="ascDesc" bind:value={ascDesc} on:change={sort}>
         <option value="ascending">Ascending</option>
         <option value="descending">descending</option>
       </select>
