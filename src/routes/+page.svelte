@@ -1,4 +1,7 @@
 <script>
+  /*
+    Home page
+  */
   import NavCard from "../lib/navCard.svelte";
 
   let pages = ["about", "suggestor", "game"];

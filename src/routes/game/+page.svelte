@@ -26,7 +26,7 @@
     }
   });
 
-  const url = "https://free-to-play-games-database.p.rapidapi.com/api/games";
+  const url = "https://free-to-play-games-database.p.rapidapi.com/api/games"; //An api that contains data about free-to-play games
   const options = {
     method: "GET",
     headers: {
@@ -78,7 +78,7 @@
     });
 
   let reset = () =>
-    //resets the game by resetting the random answer, cluse, guesses and count.
+    //resets the game by resetting the random answer, clues, guesses and count.
     {
       guess = "";
       guesses = 0;

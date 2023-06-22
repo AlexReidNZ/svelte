@@ -25,7 +25,7 @@
   const sortOptions = ["Title", "Genre", "Developer", "Release Year"];
 
  
-  let sort = () => { //Sorts the data in diffeent ways depending on a user selected sorter
+  let sort = () => { //Sorts the data in different ways depending on a user selected sorter
     if (sorter == "Title") {
       data.sort((a, b) => {
         return a.Title.localeCompare(b.Title);
