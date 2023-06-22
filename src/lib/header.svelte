@@ -6,6 +6,7 @@
   <header>Gamedle</header>
   <Navigation />
 </div>
+
 <style>
   header {
     height: 5vh;

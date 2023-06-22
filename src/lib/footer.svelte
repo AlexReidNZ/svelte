@@ -1,6 +1,7 @@
 <div>
-<footer>Background image: <a href="https://unsplash.com/photos/JN3HCJvZEFA">https://unsplash.com/photos/JN3HCJvZEFA</a></footer>
+  <footer>Background image: <a href="https://unsplash.com/photos/JN3HCJvZEFA">https://unsplash.com/photos/JN3HCJvZEFA</a></footer>
 </div>
+
 <style>
   div{
     background-color: var(--darkColour);

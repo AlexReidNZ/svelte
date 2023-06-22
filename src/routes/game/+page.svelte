@@ -219,10 +219,10 @@
     margin: 10px;
     width: 80px;
   }
-  .resetButton {
+  .resetButton, .clearButton {
     background-color: rgb(204, 55, 55);
   }
-  .resetButton:hover {
+  .resetButton:hover, .clearButton:hover {
     background-color: rgb(255, 0, 0);
     border-color: rgb(255, 0, 0);
   }
@@ -235,12 +235,7 @@
   }
   .clearButton {
     font-size: 12px;
-    background-color: rgb(204, 55, 55);
     width: fit-content;
-  }
-  .clearButton:hover {
-    background-color: rgb(255, 0, 0);
-    border-color: rgb(255, 0, 0);
   }
   .scores {
     max-width: 900px;
