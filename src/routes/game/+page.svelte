@@ -218,6 +218,7 @@
   button {
     margin: 10px;
     width: 80px;
+    transition: background-color 1.5s;
   }
   .resetButton, .clearButton {
     background-color: rgb(204, 55, 55);

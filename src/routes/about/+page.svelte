@@ -84,6 +84,7 @@
     margin-top: 5px;
     height: 3em;
     width: 7em;
+    transition: background-color 1.5s, color 0.75s;
   }
   button:hover {
     background-color: var(--secondaryHighlight);

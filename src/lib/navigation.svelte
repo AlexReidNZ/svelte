@@ -11,7 +11,7 @@
     </li>
     <li>
       <button class:active={$page.url.pathname.includes("about")}
-        ><a href="about">about</a></button
+        ><a href="about">About</a></button
       >
     </li>
     <li>
@@ -40,6 +40,7 @@
     margin-bottom: 5px;
     margin-top: 5px;
     width: 80px;
+    transition: background-color 1.5s;
   }
   a {
     display: block;
@@ -47,6 +48,7 @@
     color: black;
     text-decoration: underline var(--secondaryHighlight);
     font-size: 16px;
+    transition: color 0.75s;
   }
   button:hover {
     background-color: var(--secondaryHighlight);

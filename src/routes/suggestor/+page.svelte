@@ -139,27 +139,6 @@
     </section>
   </section>
 
-  <section class="centerSettings">
-    <details>
-      <!--Displays the currently selected filters-->
-      <summary>Current Settings</summary>
-      <ul>
-        {#if platform == ""}
-          <li>Platform: Any</li>
-        {:else}
-          <li>Platform: {platform}</li>
-        {/if}
-        {#if genre == ""}
-          <li>Genre: Any</li>
-        {:else}
-          <li>Genre: {genre}</li>
-        {/if}
-        <li>Year: {firstYear}-{lastYear}</li>
-        <li>Sorted By: {sorter}</li>
-      </ul>
-    </details>
-  </section>
-
   <section class="DisplayedList">
     <h2>You Should Play...</h2>
     <span>
@@ -182,7 +161,7 @@
 </section>
 
 <style>
-  label, select, details ul, .filterSeperator {
+  label, select, .filterSeperator {
     width: fit-content;
   }
   .options {
@@ -200,31 +179,7 @@
     border-color: var(--highlightText);
     border-radius: 10px;
   }
-  .centerSettings, details {
-    display: flex;
-    justify-content: center;
-  }
-  details {
-    margin: 10px;
-  }
-  details summary {
-    align-self: center;
-  }
-  details ul {
-    margin: 0px;
-    padding: 5px;
-    background-color: var(--darkColour);
-    color: var(--bodyText);
-    border-radius: 10px;
-    border: 1px;
-    border-color: var(--highlightText);
-    border-style: solid;
-    list-style-type: none;
-  }
-  details ul li {
-    margin-right: 10px;
-    display: inline;
-  }
+  
   .filterSeperator {
     height: fit-content;
   }

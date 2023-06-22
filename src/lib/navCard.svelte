@@ -5,6 +5,9 @@
 <a href={pageName}><section><p>{pageName}</p></section></a>
 
 <style>
+    a section p {
+        text-transform: capitalize;
+    }
     section {
         width: 10vw;
         height: 10vh;
